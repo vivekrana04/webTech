@@ -1,0 +1,2488 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Unit 4 - Web Technology</title>
+
+<style>
+
+/* =========================
+   GLOBAL STYLING
+========================= */
+
+:root {
+    --primary: #14532d;
+    --secondary: #166534;
+    --accent: #84cc16;
+    --light: #dcfce7;
+    --background: #f0fdf4;
+    --text: #1f2937;
+    --white: #ffffff;
+    --border: #bbf7d0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.top {
+    background: linear-gradient(120deg, #052e16, #166534);
+    color: white;
+    padding: 22px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.top-inner {
+    max-width: 1400px;
+    margin: auto;
+}
+
+.brand {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.brand-icon {
+    background: #84cc16;
+    color: #052e16;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 12px;
+}
+
+.brand-name {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.brand-subtitle {
+    font-size: 12px;
+    color: #bbf7d0;
+}
+
+/* =========================
+   PAGE LAYOUT
+========================= */
+
+.layout {
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 270px 1fr;
+    gap: 25px;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.toc {
+    background: white;
+    padding: 22px;
+    border-radius: 14px;
+    height: fit-content;
+    position: sticky;
+    top: 105px;
+    border: 1px solid var(--border);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+}
+
+.toc-title {
+    color: var(--primary);
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.toc ul {
+    list-style: none;
+}
+
+.toc li {
+    margin: 9px 0;
+}
+
+.toc a {
+    color: #374151;
+    text-decoration: none;
+    font-size: 13px;
+    display: block;
+    padding: 7px 9px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.toc a:hover {
+    background: var(--light);
+    color: var(--primary);
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+main {
+    min-width: 0;
+    background: white;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+}
+
+h1 {
+    color: var(--primary);
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: var(--primary);
+    font-size: 24px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 8px;
+}
+
+h3 {
+    color: var(--secondary);
+    margin: 20px 0 10px;
+}
+
+h4 {
+    color: var(--primary);
+    margin: 15px 0 8px;
+}
+
+section {
+    margin-bottom: 45px;
+    scroll-margin-top: 100px;
+}
+
+p {
+    margin: 10px 0;
+}
+
+ul, ol {
+    margin: 12px 0 12px 25px;
+}
+
+li {
+    margin: 6px 0;
+}
+
+strong {
+    color: var(--primary);
+}
+
+/* =========================
+   TABLES
+========================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 14px;
+}
+
+th {
+    background: var(--primary);
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    padding: 11px;
+    border: 1px solid #d1d5db;
+    vertical-align: top;
+}
+
+tr:nth-child(even) {
+    background: #f0fdf4;
+}
+
+/* =========================
+   EXAM BOOSTER
+========================= */
+
+.exam-booster {
+    background: #f0fdf4;
+    border-left: 5px solid #16a34a;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.exam-booster h3 {
+    margin-top: 0;
+}
+
+.note {
+    background: #ecfccb;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+/* =========================
+   CODE BLOCKS
+========================= */
+
+pre {
+    background: #14251b;
+    color: #dcfce7;
+    padding: 18px;
+    border-radius: 9px;
+    overflow-x: auto;
+    margin: 15px 0;
+    font-size: 13px;
+}
+
+code {
+    font-family: Consolas, monospace;
+}
+
+/* =========================
+   DIAGRAMS
+========================= */
+
+.diagram {
+    background: #f0fdf4;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin: 20px 0;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.diagram-box {
+    background: white;
+    border: 2px solid #16a34a;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 8px auto;
+    max-width: 320px;
+}
+
+.arrow {
+    font-size: 22px;
+    color: #16a34a;
+}
+
+/* =========================
+   BLOOM QUESTIONS
+========================= */
+
+.bloom {
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 18px 0;
+}
+
+.tag {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.pager {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.pager a {
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 7px;
+}
+
+.pager a:hover {
+    background: var(--secondary);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.foot {
+    background: #052e16;
+    color: white;
+    padding: 25px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.foot small {
+    color: #bbf7d0;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media(max-width: 850px) {
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .toc {
+        position: static;
+    }
+
+    main {
+        padding: 22px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 21px;
+    }
+
+}
+
+@media(max-width: 500px) {
+
+    .top {
+        padding: 15px;
+    }
+
+    main {
+        padding: 16px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    td, th {
+        padding: 8px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="top">
+
+    <div class="top-inner">
+
+        <a class="brand" href="index.html">
+
+            <span class="brand-icon">WT</span>
+
+            <span>
+                <span class="brand-name">
+                    WEB TECHNOLOGY NOTES
+                </span>
+
+                <br>
+
+                <span class="brand-subtitle">
+                    One Night Fight Solution
+                </span>
+            </span>
+
+        </a>
+
+    </div>
+
+</header>
+
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+
+<aside class="toc">
+
+    <p class="toc-title">In this unit</p>
+
+    <ul>
+
+        <li><a href="#web2">Web 2.0</a></li>
+
+        <li><a href="#blogs">Blogs, Wikis and Social Networking</a></li>
+
+        <li><a href="#ajax">AJAX</a></li>
+
+        <li><a href="#rss">RSS</a></li>
+
+        <li><a href="#rails">Ruby on Rails</a></li>
+
+        <li><a href="#api">Open APIs</a></li>
+
+        <li><a href="#web3">Web 3.0</a></li>
+
+        <li><a href="#widgets">Widgets</a></li>
+
+        <li><a href="#mashups">Mashups</a></li>
+
+        <li><a href="#rdf">RDF</a></li>
+
+        <li><a href="#wbis">Web-Based Information Systems</a></li>
+
+        <li><a href="#search">Search Engines</a></li>
+
+        <li><a href="#recommend">Recommender Systems</a></li>
+
+        <li><a href="#blockchain">Blockchain</a></li>
+
+        <li><a href="#edge">Edge Computing</a></li>
+
+        <li><a href="#dark">Dark Mode</a></li>
+
+        <li><a href="#revision"><b>Quick Revision</b></a></li>
+
+        <li><a href="#questions"><b>Important Questions</b></a></li>
+
+    </ul>
+
+</aside>
+
+
+<!-- MAIN CONTENT -->
+
+<main>
+
+<h1>Unit 4: Web 2.0, Web 3.0 and Emerging Technologies</h1>
+
+<p class="subtitle">
+    Interactive Web, Semantic Web, Web Applications and Modern Computing Technologies
+</p>
+
+
+<!-- 1 WEB 2.0 -->
+
+<section id="web2">
+
+<h2>1. Web 2.0: Interactive and Social Web</h2>
+
+<p>
+    <strong>Web 2.0</strong> refers to the second generation of the World Wide Web,
+    where users can interact, create, share and modify content instead of
+    simply viewing static web pages.
+</p>
+
+<h3>Features of Web 2.0</h3>
+
+<ul>
+
+    <li>User-generated content.</li>
+
+    <li>Social networking and communication.</li>
+
+    <li>Interactive websites.</li>
+
+    <li>Content sharing and collaboration.</li>
+
+    <li>Dynamic web pages.</li>
+
+    <li>Cloud-based services.</li>
+
+</ul>
+
+<h3>Examples</h3>
+
+<ul>
+
+    <li>Facebook – Social networking.</li>
+
+    <li>YouTube – Video sharing.</li>
+
+    <li>Wikipedia – Collaborative information.</li>
+
+    <li>Instagram – Photo and video sharing.</li>
+
+    <li>Blogger – Blogging platform.</li>
+
+</ul>
+
+<h3>Web 1.0 vs Web 2.0</h3>
+
+<table>
+
+<tr>
+    <th>Web 1.0</th>
+    <th>Web 2.0</th>
+</tr>
+
+<tr>
+    <td>Read-only web</td>
+    <td>Read-write web</td>
+</tr>
+
+<tr>
+    <td>Static websites</td>
+    <td>Dynamic websites</td>
+</tr>
+
+<tr>
+    <td>Limited user interaction</td>
+    <td>High user interaction</td>
+</tr>
+
+<tr>
+    <td>Content created mainly by website owners</td>
+    <td>Content created by users</td>
+</tr>
+
+<tr>
+    <td>Basic information websites</td>
+    <td>Facebook, YouTube</td>
+</tr>
+
+</table>
+
+<div class="exam-booster">
+
+<h3>🎯 Exam Booster</h3>
+
+<p>
+    Web 2.0 is an interactive and collaborative version of the World Wide Web
+    that allows users to create, share and modify content through blogs,
+    wikis, social networking and other web applications.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 2 BLOGS WIKIS -->
+
+<section id="blogs">
+
+<h2>2. Blogs, Wikis and Social Networking Sites</h2>
+
+<h3>A. Blogs</h3>
+
+<p>
+    A blog is a website or web page where an individual or organization
+    regularly publishes articles, opinions, news or information.
+</p>
+
+<h4>Features</h4>
+
+<ul>
+
+    <li>Posts are generally displayed in reverse chronological order.</li>
+
+    <li>Readers can comment on posts.</li>
+
+    <li>Supports images, videos and hyperlinks.</li>
+
+    <li>Content can be updated regularly.</li>
+
+</ul>
+
+<p><strong>Examples:</strong> WordPress, Blogger and Medium.</p>
+
+<h4>Advantages</h4>
+
+<ul>
+
+    <li>Easy information sharing.</li>
+
+    <li>Supports online learning.</li>
+
+    <li>Helps in personal branding.</li>
+
+    <li>Useful for digital marketing.</li>
+
+</ul>
+
+
+<h3>B. Wikis</h3>
+
+<p>
+    A wiki is a collaborative website that allows multiple users
+    to create, edit and organize information.
+</p>
+
+<h4>Features</h4>
+
+<ul>
+
+    <li>Multiple users can edit content.</li>
+
+    <li>Supports hyperlinks.</li>
+
+    <li>Maintains revision history.</li>
+
+    <li>Encourages collaboration.</li>
+
+</ul>
+
+<p><strong>Example:</strong> Wikipedia.</p>
+
+
+<h3>C. Social Networking Sites</h3>
+
+<p>
+    Social networking sites are online platforms that allow people
+    to connect, communicate and share information.
+</p>
+
+<h4>Features</h4>
+
+<ul>
+
+    <li>User profiles.</li>
+
+    <li>Friends and followers.</li>
+
+    <li>Messaging.</li>
+
+    <li>Content sharing.</li>
+
+    <li>Groups and communities.</li>
+
+</ul>
+
+<p>
+    <strong>Examples:</strong> Facebook, Instagram, LinkedIn and X.
+</p>
+
+
+<h3>Comparison</h3>
+
+<table>
+
+<tr>
+    <th>Blog</th>
+    <th>Wiki</th>
+    <th>Social Networking</th>
+</tr>
+
+<tr>
+    <td>Publishes articles</td>
+    <td>Creates collaborative information</td>
+    <td>Connects people</td>
+</tr>
+
+<tr>
+    <td>Usually controlled by an author</td>
+    <td>Multiple editors</td>
+    <td>Multiple users</td>
+</tr>
+
+<tr>
+    <td>Comments and discussions</td>
+    <td>Collaborative editing</td>
+    <td>Likes, comments and messages</td>
+</tr>
+
+<tr>
+    <td>WordPress</td>
+    <td>Wikipedia</td>
+    <td>Facebook</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- 3 AJAX -->
+
+<section id="ajax">
+
+<h2>3. AJAX – Asynchronous JavaScript and XML</h2>
+
+<p>
+    <strong>AJAX</strong> stands for Asynchronous JavaScript and XML.
+    It is a web development technique that allows a webpage to communicate
+    with a server and update specific parts of the page without reloading
+    the entire webpage.
+</p>
+
+<h3>Working of AJAX</h3>
+
+<div class="diagram">
+
+    <div class="diagram-box">User performs an action</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">JavaScript sends a request</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">Server processes the request</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">Server sends response</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">Webpage updates without full reload</div>
+
+</div>
+
+<h3>Technologies Used</h3>
+
+<ul>
+
+    <li>HTML – Page structure.</li>
+
+    <li>CSS – Styling.</li>
+
+    <li>JavaScript – Client-side functionality.</li>
+
+    <li>XMLHttpRequest or Fetch API – Communication.</li>
+
+    <li>XML or JSON – Data exchange formats.</li>
+
+</ul>
+
+<h3>Example</h3>
+
+<p>
+    When you search for a product on an e-commerce website,
+    suggestions appear automatically while typing without
+    refreshing the entire page.
+</p>
+
+<h3>AJAX Example Using Fetch API</h3>
+
+<pre><code>
+fetch("data.php")
+    .then(response => response.text())
+    .then(data => {
+
+        document.getElementById("result").innerHTML = data;
+
+    });
+</code></pre>
+
+<h3>Advantages</h3>
+
+<ul>
+
+    <li>Reduces unnecessary page reloads.</li>
+
+    <li>Improves user experience.</li>
+
+    <li>Allows asynchronous communication.</li>
+
+    <li>Can reduce unnecessary data transfer.</li>
+
+</ul>
+
+<h3>Disadvantages</h3>
+
+<ul>
+
+    <li>Requires JavaScript.</li>
+
+    <li>Can introduce security risks if poorly implemented.</li>
+
+    <li>Debugging can be more complex.</li>
+
+</ul>
+
+<div class="exam-booster">
+
+<h3>🎯 Exam Booster</h3>
+
+<p>
+    AJAX allows a webpage to exchange data with a server asynchronously
+    and update selected webpage content without refreshing the complete page.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 4 RSS -->
+
+<section id="rss">
+
+<h2>4. RSS – Really Simple Syndication</h2>
+
+<p>
+    RSS stands for <strong>Really Simple Syndication</strong>.
+    It is a web feed format used to distribute frequently updated
+    content such as news, blogs and articles.
+</p>
+
+<h3>Working of RSS</h3>
+
+<ol>
+
+    <li>A website creates an RSS feed.</li>
+
+    <li>The feed contains updated content.</li>
+
+    <li>An RSS reader checks the feed.</li>
+
+    <li>Users receive updates without visiting the website manually.</li>
+
+</ol>
+
+<h3>Example</h3>
+
+<p>
+    Suppose you subscribe to a technology news website through an RSS reader.
+    Whenever a new article is published, the reader can display the update.
+</p>
+
+<h3>Advantages</h3>
+
+<ul>
+
+    <li>Saves time.</li>
+
+    <li>Provides automatic updates.</li>
+
+    <li>Collects content from multiple websites.</li>
+
+    <li>Reduces the need to visit websites individually.</li>
+
+</ul>
+
+</section>
+
+
+<!-- 5 RUBY ON RAILS -->
+
+<section id="rails">
+
+<h2>5. Ruby on Rails</h2>
+
+<p>
+    Ruby on Rails is an open-source web application development framework
+    written in the Ruby programming language.
+</p>
+
+<p>
+    It helps developers build web applications quickly using reusable
+    components and predefined structures.
+</p>
+
+<h3>Features</h3>
+
+<ul>
+
+    <li>MVC architecture.</li>
+
+    <li>Database integration.</li>
+
+    <li>Code reusability.</li>
+
+    <li>Convention over configuration.</li>
+
+    <li>Rapid application development.</li>
+
+</ul>
+
+<h3>MVC Architecture</h3>
+
+<p>MVC stands for Model, View and Controller.</p>
+
+<div class="diagram">
+
+    <div class="diagram-box">USER</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">CONTROLLER</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">MODEL – Data and Database</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">VIEW – User Interface</div>
+
+</div>
+
+<table>
+
+<tr>
+    <th>Component</th>
+    <th>Function</th>
+</tr>
+
+<tr>
+    <td>Model</td>
+    <td>Handles data and database operations.</td>
+</tr>
+
+<tr>
+    <td>View</td>
+    <td>Displays information to users.</td>
+</tr>
+
+<tr>
+    <td>Controller</td>
+    <td>Handles user requests and connects Model and View.</td>
+</tr>
+
+</table>
+
+<h3>Example</h3>
+
+<p>
+    When a user opens a product page, the Controller receives the request,
+    the Model fetches product details from the database, and the View
+    displays the product information.
+</p>
+
+</section>
+
+
+<!-- 6 OPEN API -->
+
+<section id="api">
+
+<h2>6. Open APIs</h2>
+
+<p>
+    API stands for <strong>Application Programming Interface</strong>.
+    It allows two software applications to communicate with each other.
+</p>
+
+<p>
+    An Open API is an API whose specification is publicly available
+    for developers to use, subject to its access conditions and terms.
+</p>
+
+<h3>Working of an API</h3>
+
+<div class="diagram">
+
+    <div class="diagram-box">Application sends API request</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">API receives the request</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">Server processes the request</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">API returns data</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">Application displays result</div>
+
+</div>
+
+<h3>Example</h3>
+
+<p>
+    A weather application can use a weather service API to retrieve
+    temperature, humidity and forecast information.
+</p>
+
+<h3>Advantages</h3>
+
+<ul>
+
+    <li>Integration between applications.</li>
+
+    <li>Saves development time.</li>
+
+    <li>Allows data sharing.</li>
+
+    <li>Supports innovation.</li>
+
+</ul>
+
+</section>
+
+
+<!-- 7 WEB 3.0 -->
+
+<section id="web3">
+
+<h2>7. Web 3.0 – Semantic Web</h2>
+
+<p>
+    In this syllabus, Web 3.0 refers to the Semantic Web,
+    where information is structured and connected in a meaningful way
+    so that machines can better understand the meaning and relationships
+    between data.
+</p>
+
+<h3>Features</h3>
+
+<ul>
+
+    <li>Semantic understanding.</li>
+
+    <li>Machine-readable information.</li>
+
+    <li>Linked data.</li>
+
+    <li>Intelligent search.</li>
+
+    <li>Data interoperability.</li>
+
+    <li>Improved personalization.</li>
+
+</ul>
+
+<h3>Example</h3>
+
+<p>
+    Suppose you search for books written by APJ Abdul Kalam.
+    A semantic system can understand the relationship between
+    the person, the author role and the books associated with that person.
+</p>
+
+<h3>Web 1.0 vs Web 2.0 vs Web 3.0</h3>
+
+<table>
+
+<tr>
+    <th>Web 1.0</th>
+    <th>Web 2.0</th>
+    <th>Web 3.0</th>
+</tr>
+
+<tr>
+    <td>Read-only</td>
+    <td>Read-write</td>
+    <td>Semantic and intelligent</td>
+</tr>
+
+<tr>
+    <td>Static pages</td>
+    <td>Interactive applications</td>
+    <td>Machine-understandable data</td>
+</tr>
+
+<tr>
+    <td>Limited interaction</td>
+    <td>User participation</td>
+    <td>Meaning-based processing</td>
+</tr>
+
+<tr>
+    <td>Basic websites</td>
+    <td>Social platforms</td>
+    <td>Semantic applications</td>
+</tr>
+
+</table>
+
+<div class="note">
+
+    <strong>Important Note:</strong>
+
+    Web 3.0 can also refer to decentralized technologies in modern discussions.
+    However, for this syllabus, focus primarily on the Semantic Web.
+
+</div>
+
+</section>
+
+
+<!-- 8 WIDGETS -->
+
+<section id="widgets">
+
+<h2>8. Widgets</h2>
+
+<p>
+    A widget is a small, reusable application or component that provides
+    specific information or functionality within a webpage or application.
+</p>
+
+<h3>Examples</h3>
+
+<ul>
+
+    <li>Weather widget.</li>
+
+    <li>Calendar widget.</li>
+
+    <li>Search box.</li>
+
+    <li>News widget.</li>
+
+    <li>Clock widget.</li>
+
+</ul>
+
+<h3>Features</h3>
+
+<ul>
+
+    <li>Provides specific functionality.</li>
+
+    <li>Can be embedded in websites.</li>
+
+    <li>Improves user interaction.</li>
+
+    <li>Displays real-time or updated information.</li>
+
+</ul>
+
+<h3>Advantages</h3>
+
+<ul>
+
+    <li>Improves website usability.</li>
+
+    <li>Saves development time.</li>
+
+    <li>Adds useful functionality.</li>
+
+    <li>Makes information easily accessible.</li>
+
+</ul>
+
+</section>
+
+
+<!-- 9 MASHUPS -->
+
+<section id="mashups">
+
+<h2>9. Mashups</h2>
+
+<p>
+    A mashup is a web application that combines data or functionality
+    from multiple sources to create a new service.
+</p>
+
+<h3>Example: Travel Application</h3>
+
+<div class="diagram">
+
+    <div class="diagram-box">Maps API</div>
+
+    <div class="diagram-box">Weather API</div>
+
+    <div class="diagram-box">Hotel API</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">Combined Travel Application</div>
+
+</div>
+
+<h3>Types of Mashups</h3>
+
+<ol>
+
+    <li>Data Mashup – Combines information from multiple sources.</li>
+
+    <li>Presentation Mashup – Combines different interfaces or visual content.</li>
+
+    <li>Business Mashup – Combines business services and applications.</li>
+
+</ol>
+
+<h3>Advantages</h3>
+
+<ul>
+
+    <li>Combines multiple services.</li>
+
+    <li>Saves development time.</li>
+
+    <li>Provides additional functionality.</li>
+
+    <li>Improves user experience.</li>
+
+</ul>
+
+<h3>Widgets vs Mashups</h3>
+
+<table>
+
+<tr>
+    <th>Widgets</th>
+    <th>Mashups</th>
+</tr>
+
+<tr>
+    <td>Small application components</td>
+    <td>Applications combining multiple sources</td>
+</tr>
+
+<tr>
+    <td>Usually provide one function</td>
+    <td>Provide combined functionality</td>
+</tr>
+
+<tr>
+    <td>Can be embedded in a page</td>
+    <td>Integrate data or services</td>
+</tr>
+
+<tr>
+    <td>Weather widget</td>
+    <td>Travel application using maps and weather APIs</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- 10 RDF -->
+
+<section id="rdf">
+
+<h2>10. RDF – Resource Description Framework</h2>
+
+<p>
+    RDF stands for <strong>Resource Description Framework</strong>.
+    It is a standard framework used to represent information about resources
+    on the Web in a structured and machine-readable format.
+</p>
+
+<p>
+    RDF is an important technology of the Semantic Web.
+</p>
+
+<h3>RDF Structure</h3>
+
+<p>
+    RDF represents information using triples.
+    A triple consists of three components:
+</p>
+
+<ol>
+
+    <li><strong>Subject:</strong> The resource being described.</li>
+
+    <li><strong>Predicate:</strong> The relationship or property.</li>
+
+    <li><strong>Object:</strong> The value or related resource.</li>
+
+</ol>
+
+<h3>Example</h3>
+
+<p>Statement: Vivek studies Computer Science.</p>
+
+<table>
+
+<tr>
+    <th>Component</th>
+    <th>Value</th>
+</tr>
+
+<tr>
+    <td>Subject</td>
+    <td>Vivek</td>
+</tr>
+
+<tr>
+    <td>Predicate</td>
+    <td>Studies</td>
+</tr>
+
+<tr>
+    <td>Object</td>
+    <td>Computer Science</td>
+</tr>
+
+</table>
+
+<div class="diagram">
+
+    <div class="diagram-box">Vivek</div>
+
+    <div class="arrow">↓ studies</div>
+
+    <div class="diagram-box">Computer Science</div>
+
+</div>
+
+<h3>Features</h3>
+
+<ul>
+
+    <li>Represents relationships between resources.</li>
+
+    <li>Supports machine-readable data.</li>
+
+    <li>Enables linked data.</li>
+
+    <li>Helps integrate information from different sources.</li>
+
+</ul>
+
+<div class="exam-booster">
+
+    <h3>🎯 Exam Booster</h3>
+
+    <p>
+        RDF represents information using Subject–Predicate–Object triples.
+        It provides a structured way to describe resources and relationships
+        on the Semantic Web.
+    </p>
+
+</div>
+
+</section>
+
+
+<!-- 11 WBIS -->
+
+<section id="wbis">
+
+<h2>11. Web-Based Information Systems</h2>
+
+<p>
+    A Web-Based Information System (WBIS) is an information system that
+    uses web technologies and internet connectivity to collect, process,
+    store and distribute information through a web browser.
+</p>
+
+<h3>Components</h3>
+
+<ol>
+
+    <li>Client – User's browser or device.</li>
+
+    <li>Web Server – Receives and processes requests.</li>
+
+    <li>Application Server – Executes application logic.</li>
+
+    <li>Database – Stores information.</li>
+
+    <li>Network – Connects the components.</li>
+
+</ol>
+
+<h3>Architecture</h3>
+
+<div class="diagram">
+
+    <div class="diagram-box">USER</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">WEB BROWSER</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">WEB SERVER</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">APPLICATION SERVER</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">DATABASE</div>
+
+</div>
+
+<h3>Examples</h3>
+
+<ul>
+
+    <li>Online banking systems.</li>
+
+    <li>University management systems.</li>
+
+    <li>E-commerce websites.</li>
+
+    <li>Hospital management systems.</li>
+
+    <li>Online examination portals.</li>
+
+</ul>
+
+<h3>Advantages</h3>
+
+<ul>
+
+    <li>Access from different locations.</li>
+
+    <li>Centralized data management.</li>
+
+    <li>Easy maintenance.</li>
+
+    <li>Supports multiple users.</li>
+
+    <li>Reduces software installation requirements.</li>
+
+</ul>
+
+<h3>Disadvantages</h3>
+
+<ul>
+
+    <li>Requires network connectivity.</li>
+
+    <li>Security and privacy concerns.</li>
+
+    <li>Server failure can affect users.</li>
+
+    <li>Performance depends on infrastructure.</li>
+
+</ul>
+
+</section>
+
+
+<!-- 12 SEARCH ENGINES -->
+
+<section id="search">
+
+<h2>12. Search Engines</h2>
+
+<p>
+    A search engine is a software system that searches information
+    available on the Internet and displays relevant results according
+    to a user's query.
+</p>
+
+<h3>Examples</h3>
+
+<ul>
+
+    <li>Google.</li>
+
+    <li>Bing.</li>
+
+    <li>DuckDuckGo.</li>
+
+    <li>Yahoo.</li>
+
+</ul>
+
+<h3>Working of Search Engines</h3>
+
+<p>
+    A search engine generally works through three major stages.
+</p>
+
+<h4>1. Crawling</h4>
+
+<p>
+    Search engine bots visit webpages and discover new or updated content.
+</p>
+
+<h4>2. Indexing</h4>
+
+<p>
+    The discovered information is analyzed and stored in a searchable index.
+</p>
+
+<h4>3. Ranking</h4>
+
+<p>
+    When a user searches for something, the search engine ranks relevant
+    pages and displays the results.
+</p>
+
+<h3>Search Engine Architecture</h3>
+
+<div class="diagram">
+
+    <div class="diagram-box">WEB PAGES</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">WEB CRAWLER</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">INDEXER</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">SEARCH INDEX</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">USER QUERY</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">RANKING</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">SEARCH RESULTS</div>
+
+</div>
+
+<h3>Advantages</h3>
+
+<ul>
+
+    <li>Fast information retrieval.</li>
+
+    <li>Easy access to online resources.</li>
+
+    <li>Supports research and learning.</li>
+
+    <li>Helps users discover websites.</li>
+
+</ul>
+
+<h3>Limitations</h3>
+
+<ul>
+
+    <li>May display irrelevant results.</li>
+
+    <li>Some results may contain misinformation.</li>
+
+    <li>Search rankings can be manipulated.</li>
+
+    <li>User privacy can be affected by tracking.</li>
+
+</ul>
+
+</section>
+
+
+<!-- 13 RECOMMENDER SYSTEMS -->
+
+<section id="recommend">
+
+<h2>13. Recommender Systems</h2>
+
+<p>
+    A recommender system is a software system that suggests products,
+    services, movies, music or other content to users based on their
+    interests, preferences and behavior.
+</p>
+
+<h3>Examples</h3>
+
+<ul>
+
+    <li>Netflix recommends movies.</li>
+
+    <li>Amazon recommends products.</li>
+
+    <li>Spotify recommends music.</li>
+
+    <li>YouTube recommends videos.</li>
+
+</ul>
+
+<h3>Types of Recommender Systems</h3>
+
+<h4>1. Content-Based Filtering</h4>
+
+<p>
+    Recommends items similar to those a user has previously liked.
+</p>
+
+<p>
+    <strong>Example:</strong> If a user watches science-fiction movies,
+    the system recommends other science-fiction movies.
+</p>
+
+<h4>2. Collaborative Filtering</h4>
+
+<p>
+    Recommends items based on the preferences or behavior of similar users.
+</p>
+
+<p>
+    <strong>Example:</strong> If two users have similar movie preferences,
+    the system may recommend movies liked by one user to the other.
+</p>
+
+<h4>3. Hybrid Filtering</h4>
+
+<p>
+    Combines content-based and collaborative filtering.
+</p>
+
+<h3>Comparison</h3>
+
+<table>
+
+<tr>
+    <th>Content-Based</th>
+    <th>Collaborative</th>
+    <th>Hybrid</th>
+</tr>
+
+<tr>
+    <td>Uses item features</td>
+    <td>Uses user behavior</td>
+    <td>Uses both</td>
+</tr>
+
+<tr>
+    <td>Focuses on individual preferences</td>
+    <td>Focuses on similar users</td>
+    <td>Combines methods</td>
+</tr>
+
+<tr>
+    <td>Recommends similar items</td>
+    <td>Can discover new interests</td>
+    <td>Combines recommendation signals</td>
+</tr>
+
+</table>
+
+<h3>Advantages</h3>
+
+<ul>
+
+    <li>Personalized experience.</li>
+
+    <li>Saves user time.</li>
+
+    <li>Improves customer engagement.</li>
+
+    <li>Helps businesses increase sales.</li>
+
+</ul>
+
+<h3>Challenges</h3>
+
+<ul>
+
+    <li>Cold-start problem.</li>
+
+    <li>Data privacy.</li>
+
+    <li>Biased recommendations.</li>
+
+    <li>Large amounts of data may be required.</li>
+
+</ul>
+
+</section>
+
+
+<!-- 14 BLOCKCHAIN -->
+
+<section id="blockchain">
+
+<h2>14. Benefits of Blockchain</h2>
+
+<p>
+    Blockchain is a distributed digital ledger technology that records
+    transactions in blocks linked together using cryptographic techniques.
+</p>
+
+<p>
+    Once information is recorded and confirmed according to the network's
+    rules, changing it is difficult.
+</p>
+
+<h3>How Blockchain Works</h3>
+
+<ol>
+
+    <li>A transaction is initiated.</li>
+
+    <li>The transaction is broadcast to the network.</li>
+
+    <li>Network participants validate the transaction.</li>
+
+    <li>Valid transactions are grouped into a block.</li>
+
+    <li>The block is added to the blockchain.</li>
+
+    <li>The updated ledger is shared across the network.</li>
+
+</ol>
+
+<h3>Blockchain Structure</h3>
+
+<div class="diagram">
+
+    <div class="diagram-box">BLOCK 1</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">BLOCK 2</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">BLOCK 3</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">BLOCK 4</div>
+
+</div>
+
+<p>
+    Each block generally contains transaction data, a timestamp and
+    a cryptographic hash. Blocks are linked through cryptographic references.
+</p>
+
+<h3>Benefits</h3>
+
+<ol>
+
+    <li>Transparency – Transactions can be visible to permitted participants.</li>
+
+    <li>Security – Cryptographic techniques protect records.</li>
+
+    <li>Decentralization – No single central authority is necessarily required.</li>
+
+    <li>Traceability – Transactions can be tracked.</li>
+
+    <li>Data Integrity – Altering historical records is difficult.</li>
+
+    <li>Automation – Smart contracts can automate certain operations.</li>
+
+</ol>
+
+<h3>Applications</h3>
+
+<ul>
+
+    <li>Cryptocurrency.</li>
+
+    <li>Supply chain management.</li>
+
+    <li>Digital identity.</li>
+
+    <li>Financial transactions.</li>
+
+    <li>Healthcare record management.</li>
+
+</ul>
+
+<h3>Limitations</h3>
+
+<ul>
+
+    <li>Scalability challenges.</li>
+
+    <li>Energy consumption in some consensus mechanisms.</li>
+
+    <li>Regulatory uncertainty.</li>
+
+    <li>Implementation complexity.</li>
+
+</ul>
+
+<div class="exam-booster">
+
+    <h3>🎯 Exam Booster</h3>
+
+    <p>
+        Blockchain is a distributed ledger technology that stores transactions
+        in cryptographically linked blocks. Its major benefits include
+        transparency, security, decentralization, traceability and data integrity.
+    </p>
+
+</div>
+
+</section>
+
+
+<!-- 15 EDGE COMPUTING -->
+
+<section id="edge">
+
+<h2>15. Edge Computing</h2>
+
+<p>
+    Edge computing is a computing approach in which data is processed
+    closer to the location where it is generated rather than sending
+    all data to a distant centralized cloud server.
+</p>
+
+<h3>Example: Smart Security Camera</h3>
+
+<p><strong>Traditional cloud computing:</strong></p>
+
+<ol>
+
+    <li>Camera captures video.</li>
+
+    <li>Video is sent to the cloud.</li>
+
+    <li>Cloud processes the video.</li>
+
+    <li>Result is sent back.</li>
+
+</ol>
+
+<p><strong>Edge computing:</strong></p>
+
+<ol>
+
+    <li>Camera captures video.</li>
+
+    <li>A nearby edge device processes the video.</li>
+
+    <li>It detects movement locally.</li>
+
+    <li>Only important information may be sent to the cloud.</li>
+
+</ol>
+
+<h3>Architecture</h3>
+
+<div class="diagram">
+
+    <div class="diagram-box">IoT DEVICES</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">EDGE DEVICE</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">LOCAL PROCESSING</div>
+
+    <div class="arrow">↓</div>
+
+    <div class="diagram-box">CLOUD SERVER</div>
+
+</div>
+
+<h3>Benefits</h3>
+
+<ul>
+
+    <li>Low latency.</li>
+
+    <li>Faster response.</li>
+
+    <li>Reduced bandwidth usage.</li>
+
+    <li>Better support for real-time applications.</li>
+
+    <li>Can continue some operations during internet disruptions.</li>
+
+</ul>
+
+<h3>Applications</h3>
+
+<ul>
+
+    <li>Smart cities.</li>
+
+    <li>Autonomous vehicles.</li>
+
+    <li>Industrial IoT.</li>
+
+    <li>Smart cameras.</li>
+
+    <li>Healthcare monitoring.</li>
+
+</ul>
+
+<h3>Edge Computing vs Cloud Computing</h3>
+
+<table>
+
+<tr>
+    <th>Edge Computing</th>
+    <th>Cloud Computing</th>
+</tr>
+
+<tr>
+    <td>Processes data near the source</td>
+    <td>Processes data in centralized data centres</td>
+</tr>
+
+<tr>
+    <td>Low latency for local processing</td>
+    <td>May involve network delay</td>
+</tr>
+
+<tr>
+    <td>Reduces data transmission</td>
+    <td>Often requires sending data to cloud</td>
+</tr>
+
+<tr>
+    <td>Useful for real-time applications</td>
+    <td>Useful for large-scale storage and processing</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- 16 DARK MODE -->
+
+<section id="dark">
+
+<h2>16. Dark Mode in Web Development</h2>
+
+<p>
+    Dark Mode is a user interface design approach in which the background
+    uses darker colours and text uses lighter colours.
+    It provides an alternative to the traditional light interface.
+</p>
+
+<h3>Features</h3>
+
+<ul>
+
+    <li>Dark background.</li>
+
+    <li>Light-coloured text.</li>
+
+    <li>Reduced screen brightness in many interfaces.</li>
+
+    <li>User-selectable themes.</li>
+
+    <li>Improved visual comfort for some users.</li>
+
+</ul>
+
+<h3>Advantages</h3>
+
+<ul>
+
+    <li>Can reduce perceived brightness in low-light environments.</li>
+
+    <li>May save battery on OLED displays.</li>
+
+    <li>Provides an alternative visual theme.</li>
+
+    <li>Can improve the experience for users who prefer dark interfaces.</li>
+
+</ul>
+
+<h3>Disadvantages</h3>
+
+<ul>
+
+    <li>Poor contrast can reduce readability.</li>
+
+    <li>Some images and colours may not look appropriate.</li>
+
+    <li>Requires additional design and testing.</li>
+
+    <li>Not every user prefers dark mode.</li>
+
+</ul>
+
+<h3>HTML and CSS Example</h3>
+
+<pre><code>
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<style>
+
+body {
+    background-color: white;
+    color: black;
+}
+
+.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Dark Mode Example</h2>
+
+<button onclick="toggleMode()">
+    Change Theme
+</button>
+
+<script>
+
+function toggleMode() {
+
+    document.body.classList.toggle("dark-mode");
+
+}
+
+</script>
+
+</body>
+</html>
+</code></pre>
+
+<h3>Explanation</h3>
+
+<ul>
+
+    <li>CSS defines the light and dark themes.</li>
+
+    <li>JavaScript handles the button click.</li>
+
+    <li>classList.toggle() adds or removes the dark-mode class.</li>
+
+    <li>The webpage changes its appearance without reloading.</li>
+
+</ul>
+
+<h3>Important CSS Properties</h3>
+
+<pre><code>
+background-color: #121212;
+color: white;
+</code></pre>
+
+<p>
+    These properties define the background and text colours.
+</p>
+
+</section>
+
+
+<!-- QUICK REVISION -->
+
+<section id="revision">
+
+<h2>Quick Revision – Unit 4</h2>
+
+<table>
+
+<tr>
+    <th>Topic</th>
+    <th>Important Point</th>
+</tr>
+
+<tr>
+    <td>Web 2.0</td>
+    <td>Interactive and collaborative web</td>
+</tr>
+
+<tr>
+    <td>Blogs</td>
+    <td>Online articles and posts</td>
+</tr>
+
+<tr>
+    <td>Wikis</td>
+    <td>Collaborative editing</td>
+</tr>
+
+<tr>
+    <td>Social Networking</td>
+    <td>Connecting people online</td>
+</tr>
+
+<tr>
+    <td>AJAX</td>
+    <td>Asynchronous communication</td>
+</tr>
+
+<tr>
+    <td>RSS</td>
+    <td>Content syndication</td>
+</tr>
+
+<tr>
+    <td>Ruby on Rails</td>
+    <td>Ruby-based web framework</td>
+</tr>
+
+<tr>
+    <td>Open API</td>
+    <td>Publicly available API specification</td>
+</tr>
+
+<tr>
+    <td>Web 3.0</td>
+    <td>Semantic Web</td>
+</tr>
+
+<tr>
+    <td>Widgets</td>
+    <td>Small reusable applications</td>
+</tr>
+
+<tr>
+    <td>Mashups</td>
+    <td>Combination of multiple services</td>
+</tr>
+
+<tr>
+    <td>RDF</td>
+    <td>Subject–Predicate–Object</td>
+</tr>
+
+<tr>
+    <td>WBIS</td>
+    <td>Information system using web technologies</td>
+</tr>
+
+<tr>
+    <td>Search Engine</td>
+    <td>Crawling, indexing and ranking</td>
+</tr>
+
+<tr>
+    <td>Recommender System</td>
+    <td>Personalized suggestions</td>
+</tr>
+
+<tr>
+    <td>Blockchain</td>
+    <td>Distributed digital ledger</td>
+</tr>
+
+<tr>
+    <td>Edge Computing</td>
+    <td>Processing near the data source</td>
+</tr>
+
+<tr>
+    <td>Dark Mode</td>
+    <td>Dark background and light text</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- IMPORTANT QUESTIONS -->
+
+<section id="questions">
+
+<h2>Important Questions by Bloom Level</h2>
+
+<p class="note">
+
+    Course Outcome: CO4
+
+    <br>
+
+    Start with Remember and Understand for short answers.
+    Practise Apply, Analyze, Evaluate and Create for long answers.
+
+</p>
+
+
+<div class="bloom">
+
+<h3><span class="tag">L1</span> Remember</h3>
+
+<ol>
+
+    <li>Define Web 2.0.</li>
+
+    <li>What is a blog?</li>
+
+    <li>Define AJAX.</li>
+
+    <li>What is RSS?</li>
+
+    <li>Expand RDF.</li>
+
+    <li>Define blockchain.</li>
+
+    <li>What is edge computing?</li>
+
+    <li>Define a recommender system.</li>
+
+</ol>
+
+</div>
+
+
+<div class="bloom">
+
+<h3><span class="tag">L2</span> Understand</h3>
+
+<ol>
+
+    <li>Explain the features of Web 2.0.</li>
+
+    <li>Differentiate between blogs, wikis and social networking sites.</li>
+
+    <li>Explain how AJAX works.</li>
+
+    <li>Describe the working of RSS.</li>
+
+    <li>Explain the concept of Semantic Web.</li>
+
+    <li>Explain RDF with an example.</li>
+
+    <li>Describe the working of a search engine.</li>
+
+</ol>
+
+</div>
+
+
+<div class="bloom">
+
+<h3><span class="tag">L3</span> Apply</h3>
+
+<ol>
+
+    <li>Explain how AJAX can improve an e-commerce website.</li>
+
+    <li>Explain how APIs can be used to create a weather application.</li>
+
+    <li>Show how RDF represents a relationship between two resources.</li>
+
+    <li>Explain how a recommender system can suggest products to customers.</li>
+
+    <li>Explain how edge computing can be used in smart cameras.</li>
+
+</ol>
+
+</div>
+
+
+<div class="bloom">
+
+<h3><span class="tag">L4</span> Analyze</h3>
+
+<ol>
+
+    <li>Compare Web 1.0, Web 2.0 and Web 3.0.</li>
+
+    <li>Differentiate between AJAX and RSS.</li>
+
+    <li>Compare content-based and collaborative filtering.</li>
+
+    <li>Differentiate between edge computing and cloud computing.</li>
+
+    <li>Compare widgets and mashups.</li>
+
+    <li>Analyze the architecture of a web-based information system.</li>
+
+</ol>
+
+</div>
+
+
+<div class="bloom">
+
+<h3><span class="tag">L5</span> Evaluate</h3>
+
+<ol>
+
+    <li>Discuss the benefits and limitations of blockchain.</li>
+
+    <li>Evaluate the importance of recommender systems in e-commerce.</li>
+
+    <li>Explain the advantages and disadvantages of Web 2.0.</li>
+
+    <li>Evaluate the role of edge computing in real-time applications.</li>
+
+</ol>
+
+</div>
+
+
+<div class="bloom">
+
+<h3><span class="tag">L6</span> Create</h3>
+
+<ol>
+
+    <li>Design a simple Web 2.0 application using APIs.</li>
+
+    <li>Propose a recommender system for an online shopping website.</li>
+
+    <li>Design a web-based information system for a university.</li>
+
+    <li>Create a simple webpage with a dark-mode feature.</li>
+
+</ol>
+
+</div>
+
+
+<h3>⭐ Most Important Topics for Examination</h3>
+
+<table>
+
+<tr>
+    <th>Priority</th>
+    <th>Topic</th>
+    <th>Preparation</th>
+</tr>
+
+<tr>
+    <td>High</td>
+    <td>Web 1.0 vs Web 2.0 vs Web 3.0</td>
+    <td>Comparison</td>
+</tr>
+
+<tr>
+    <td>High</td>
+    <td>AJAX</td>
+    <td>Definition, working and example</td>
+</tr>
+
+<tr>
+    <td>High</td>
+    <td>RDF</td>
+    <td>Definition and triple structure</td>
+</tr>
+
+<tr>
+    <td>High</td>
+    <td>Search Engines</td>
+    <td>Crawling, indexing and ranking</td>
+</tr>
+
+<tr>
+    <td>High</td>
+    <td>Recommender Systems</td>
+    <td>Types and examples</td>
+</tr>
+
+<tr>
+    <td>High</td>
+    <td>Blockchain</td>
+    <td>Working and benefits</td>
+</tr>
+
+<tr>
+    <td>High</td>
+    <td>Edge Computing</td>
+    <td>Architecture and cloud comparison</td>
+</tr>
+
+<tr>
+    <td>Medium</td>
+    <td>Blogs, Wikis and Social Networking</td>
+    <td>Definitions and differences</td>
+</tr>
+
+<tr>
+    <td>Medium</td>
+    <td>RSS and Open APIs</td>
+    <td>Working and applications</td>
+</tr>
+
+<tr>
+    <td>Medium</td>
+    <td>Widgets and Mashups</td>
+    <td>Definitions and differences</td>
+</tr>
+
+<tr>
+    <td>Medium</td>
+    <td>Ruby on Rails</td>
+    <td>MVC architecture</td>
+</tr>
+
+<tr>
+    <td>Medium</td>
+    <td>Dark Mode</td>
+    <td>Definition and CSS implementation</td>
+</tr>
+
+</table>
+
+</section>
+
+
+<!-- PAGE NAVIGATION -->
+
+<nav class="pager">
+
+    <a href="unit-3.html">← Unit 3</a>
+
+    <a href="index.html">All Units</a>
+
+    <a href="index.html">Home →</a>
+
+</nav>
+
+
+</main>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer class="foot">
+
+    <strong>WEB TECHNOLOGY NOTES</strong>
+
+    <br>
+
+    Web Technology · Unit 4
+
+    <br>
+
+    <small>
+        B.Tech CSE · 5th Semester · Quantum University · 2026–27
+    </small>
+
+</footer>
+
+
+</body>
+</html>

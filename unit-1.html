@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Unit 1 Web Technology notes covering Internet history, WWW, HTML, email protocols, DNS, browsers and web servers.">
+  <title>Unit 01 | Foundations of the Internet</title>
+
+  <!-- This page uses its own u1- styles so it will not clash with style.css. -->
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --u1-bg: #f4f7f6;
+      --u1-paper: #ffffff;
+      --u1-ink: #172b36;
+      --u1-muted: #62737a;
+      --u1-teal: #087e83;
+      --u1-teal-dark: #07565c;
+      --u1-orange: #f2a65a;
+      --u1-line: #dce7e5;
+      --u1-soft: #e8f4f2;
+      --u1-code: #142b35;
+      --u1-shadow: 0 14px 38px rgba(22, 54, 61, .08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body.u1-page {
+      margin: 0;
+      background: var(--u1-bg);
+      color: var(--u1-ink);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      line-height: 1.72;
+    }
+    .u1-header {
+      background: var(--u1-ink);
+      color: #fff;
+      padding: 17px 5.5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 4px solid var(--u1-orange);
+    }
+    .u1-brand { display: flex; align-items: center; gap: 13px; color: inherit; text-decoration: none; }
+    .u1-mark {
+      width: 43px; height: 43px; border-radius: 13px;
+      display: grid; place-items: center; background: var(--u1-teal); color: white;
+      font-weight: 900; letter-spacing: -2px; font-size: 19px;
+    }
+    .u1-brand-title { display: block; font-weight: 850; letter-spacing: 1.5px; font-size: 14px; }
+    .u1-brand-sub { display: block; color: #b8cccd; font-size: 11px; letter-spacing: .7px; }
+    .u1-course-code { color: #f7c58f; font-size: 12px; font-weight: 750; letter-spacing: 1px; }
+    .u1-shell { width: min(1220px, 92%); margin: 34px auto 70px; }
+    .u1-hero {
+      background: linear-gradient(120deg, #07565c 0%, #087e83 62%, #20a19a 100%);
+      color: white; border-radius: 25px; padding: clamp(28px, 5vw, 58px);
+      position: relative; overflow: hidden; box-shadow: var(--u1-shadow);
+    }
+    .u1-hero:after {
+      content: "</>"; position: absolute; right: 5%; bottom: -45px;
+      color: rgba(255,255,255,.10); font-size: clamp(100px, 20vw, 230px);
+      font-weight: 900; letter-spacing: -18px; pointer-events: none;
+    }
+    .u1-kicker { color: #ffd09d; font-size: 12px; font-weight: 800; letter-spacing: 2px; }
+    .u1-hero h1 { margin: 12px 0 8px; font-size: clamp(36px, 6vw, 68px); line-height: 1.02; letter-spacing: -2px; max-width: 760px; }
+    .u1-hero p { max-width: 680px; color: #d8eeee; margin: 16px 0 23px; }
+    .u1-hero-meta { display: flex; flex-wrap: wrap; gap: 10px; position: relative; z-index: 1; }
+    .u1-chip { border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.10); padding: 7px 12px; border-radius: 30px; font-size: 11px; font-weight: 700; }
+    .u1-layout { display: grid; grid-template-columns: 255px minmax(0, 1fr); gap: 25px; margin-top: 27px; align-items: start; }
+    .u1-sidebar {
+      position: sticky; top: 18px; background: var(--u1-paper); border: 1px solid var(--u1-line);
+      border-radius: 18px; padding: 21px 18px; box-shadow: var(--u1-shadow);
+    }
+    .u1-sidebar h2 { margin: 0 0 12px; font-size: 12px; color: var(--u1-teal); letter-spacing: 1.6px; }
+    .u1-sidebar a { display: block; color: var(--u1-muted); text-decoration: none; font-size: 13px; padding: 7px 9px; border-radius: 8px; line-height: 1.4; }
+    .u1-sidebar a:hover { color: var(--u1-teal-dark); background: var(--u1-soft); }
+    .u1-content { min-width: 0; }
+    .u1-section {
+      background: var(--u1-paper); border: 1px solid var(--u1-line); border-radius: 19px;
+      padding: clamp(21px, 3vw, 34px); margin-bottom: 20px; box-shadow: var(--u1-shadow);
+    }
+    .u1-section-head { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 17px; }
+    .u1-index {
+      flex: 0 0 42px; height: 42px; border-radius: 13px; display: grid; place-items: center;
+      background: var(--u1-soft); color: var(--u1-teal-dark); font-size: 13px; font-weight: 900;
+    }
+    .u1-section h2 { margin: 0; font-size: clamp(21px, 3vw, 28px); line-height: 1.25; letter-spacing: -.5px; }
+    .u1-section h3 { color: var(--u1-teal-dark); margin: 22px 0 8px; font-size: 17px; }
+    .u1-section p { margin: 10px 0; }
+    .u1-muted { color: var(--u1-muted); }
+    .u1-callout { background: var(--u1-soft); border-left: 4px solid var(--u1-teal); padding: 14px 17px; border-radius: 0 11px 11px 0; margin: 17px 0; }
+    .u1-callout strong { color: var(--u1-teal-dark); }
+    .u1-exam { background: #fff5e9; border: 1px solid #f6d6b3; padding: 16px 18px; border-radius: 13px; margin-top: 19px; }
+    .u1-exam h3 { color: #98551c; margin: 0 0 6px; font-size: 15px; }
+    .u1-table-wrap { overflow-x: auto; margin: 16px 0; }
+    .u1-table { width: 100%; border-collapse: collapse; min-width: 470px; font-size: 13px; }
+    .u1-table th { text-align: left; background: var(--u1-ink); color: white; padding: 11px 13px; }
+    .u1-table td { padding: 11px 13px; border-bottom: 1px solid var(--u1-line); vertical-align: top; }
+    .u1-table tr:nth-child(even) td { background: #f6faf9; }
+    .u1-code { background: var(--u1-code); color: #d9f1e9; padding: 17px 19px; border-radius: 12px; overflow-x: auto; font: 13px/1.7 Consolas, monospace; }
+    .u1-code .comment { color: #90b6a9; }
+    .u1-timeline { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; margin: 16px 0; }
+    .u1-time { border: 1px solid var(--u1-line); border-radius: 12px; padding: 13px; background: #fbfdfc; }
+    .u1-time b { display: block; color: var(--u1-teal); font-size: 17px; }
+    .u1-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 16px 0; }
+    .u1-flow span { background: var(--u1-soft); color: var(--u1-teal-dark); border: 1px solid #cce5e1; border-radius: 9px; padding: 9px 12px; font-size: 12px; font-weight: 750; }
+    .u1-flow i { color: var(--u1-orange); font-style: normal; font-weight: 900; }
+    .u1-revision { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .u1-revision div { background: #f6faf9; border: 1px solid var(--u1-line); border-radius: 11px; padding: 12px 14px; font-size: 13px; }
+    .u1-question-level { border: 1px solid var(--u1-line); border-radius: 13px; padding: 16px 18px; margin: 12px 0; }
+    .u1-level { display: inline-block; background: var(--u1-teal); color: white; border-radius: 6px; padding: 3px 8px; font-size: 11px; font-weight: 800; margin-right: 7px; }
+    .u1-pager { display: flex; justify-content: space-between; gap: 12px; margin: 24px 0; }
+    .u1-pager a { color: var(--u1-teal-dark); font-weight: 800; text-decoration: none; border: 1px solid var(--u1-line); background: white; padding: 10px 15px; border-radius: 10px; }
+    .u1-footer { text-align: center; padding: 27px 15px; background: var(--u1-ink); color: #d3e2e2; font-size: 12px; }
+    .u1-footer b { color: #f7c58f; }
+    @media (max-width: 850px) {
+      .u1-layout { grid-template-columns: 1fr; }
+      .u1-sidebar { position: static; }
+      .u1-sidebar nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 8px; }
+    }
+    @media (max-width: 520px) {
+      .u1-header { padding: 14px 4%; }
+      .u1-course-code { display: none; }
+      .u1-shell { width: 94%; margin-top: 18px; }
+      .u1-timeline, .u1-revision { grid-template-columns: 1fr; }
+      .u1-pager { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+
+<body class="u1-page">
+  <header class="u1-header">
+    <a class="u1-brand" href="index.html">
+      <span class="u1-mark">WT</span>
+      <span>
+        <span class="u1-brand-title">WEB TECHNOLOGY / FIELD NOTES</span>
+        <span class="u1-brand-sub">Understand the network behind every page</span>
+      </span>
+    </a>
+    <span class="u1-course-code">CS35302 · SEMESTER 05</span>
+  </header>
+
+  <div class="u1-shell">
+    <section class="u1-hero">
+      <span class="u1-kicker">UNIT 01 / THE FOUNDATIONS</span>
+      <h1>How the Internet<br>Works.</h1>
+      <p>Explore how the Internet evolved, how web pages are delivered, and how browsers, servers, DNS and email protocols communicate.</p>
+      <div class="u1-hero-meta">
+        <span class="u1-chip">7 CORE TOPICS</span>
+        <span class="u1-chip">CONCEPTS + EXAMPLES</span>
+        <span class="u1-chip">EXAM REVISION</span>
+      </div>
+    </section>
+
+    <div class="u1-layout">
+      <aside class="u1-sidebar">
+        <h2>UNIT CONTENTS</h2>
+        <nav>
+          <a href="#internet-history">01 · Internet history</a>
+          <a href="#www-html">02 · WWW and HTML</a>
+          <a href="#http-smtp">03 · HTTP and SMTP</a>
+          <a href="#pop3-mime-imap">04 · POP3, MIME, IMAP</a>
+          <a href="#dns">05 · Domain Name System</a>
+          <a href="#browsers">06 · Web browsers</a>
+          <a href="#servers">07 · Web servers</a>
+          <a href="#revision">Quick revision</a>
+          <a href="#questions">Exam questions</a>
+        </nav>
+      </aside>
+
+      <main class="u1-content">
+        <section class="u1-section" id="internet-history">
+          <div class="u1-section-head"><span class="u1-index">01</span><div><h2>History of the Internet</h2><span class="u1-muted">From research networks to a global communication system</span></div></div>
+          <p>The <strong>Internet</strong> is a worldwide system of interconnected computer networks. These networks communicate and exchange data using a common set of rules called the <strong>TCP/IP protocol suite</strong>.</p>
+          <div class="u1-timeline">
+            <div class="u1-time"><b>1969 · ARPANET</b>One of the earliest packet-switching networks connected research institutions in the United States.</div>
+            <div class="u1-time"><b>1983 · TCP/IP</b>ARPANET adopted TCP/IP, an important milestone in the development of the modern Internet.</div>
+            <div class="u1-time"><b>1989–1991 · WWW</b>Tim Berners-Lee proposed and developed the World Wide Web at CERN.</div>
+            <div class="u1-time"><b>1993 · Mosaic</b>The Mosaic browser helped make the Web easier to use through a graphical interface.</div>
+            <div class="u1-time"><b>Late 1990s · Growth</b>Commercial Internet services and websites expanded rapidly.</div>
+            <div class="u1-time"><b>Today · Connected world</b>Broadband, smartphones, cloud computing and connected services are part of everyday life.</div>
+          </div>
+          <h3>Internet vs World Wide Web</h3>
+          <div class="u1-table-wrap"><table class="u1-table">
+            <tr><th>Internet</th><th>World Wide Web</th></tr>
+            <tr><td>A global infrastructure of connected networks.</td><td>A service that operates using the Internet.</td></tr>
+            <tr><td>Supports web, email, file transfer, calls and more.</td><td>Provides linked pages and resources accessed through browsers.</td></tr>
+            <tr><td>Uses networking protocols such as TCP/IP.</td><td>Commonly uses HTTP/HTTPS, URLs and HTML.</td></tr>
+          </table></div>
+          <div class="u1-exam"><h3>✦ Exam-ready explanation</h3><p>The Internet is a global network of interconnected networks that exchange information using TCP/IP. It developed from early research networks such as ARPANET and has grown into a worldwide platform for communication, education, business and information sharing.</p></div>
+        </section>
+
+        <section class="u1-section" id="www-html">
+          <div class="u1-section-head"><span class="u1-index">02</span><div><h2>World Wide Web and HTML</h2><span class="u1-muted">The system of linked resources and the language used to structure web pages</span></div></div>
+          <p>The <strong>World Wide Web (WWW)</strong> is a collection of interlinked web pages and resources available over the Internet. A user normally accesses these resources through a web browser. Each resource can be identified by a <strong>URL (Uniform Resource Locator)</strong>.</p>
+          <p><strong>HTML (HyperText Markup Language)</strong> is the standard markup language used to define the structure and content of web pages. HTML uses elements, commonly written with opening and closing tags.</p>
+          <h3>Basic HTML page structure</h3>
+          <pre class="u1-code"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;title&gt;My First Web Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Welcome to the Web&lt;/h1&gt;
+  &lt;p&gt;This is a simple HTML paragraph.&lt;/p&gt;
+  &lt;a href="https://example.com"&gt;Visit website&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          <h3>Important HTML terms</h3>
+          <ul>
+            <li><strong>Tag:</strong> Markup notation such as <code>&lt;p&gt;</code> or <code>&lt;h1&gt;</code>.</li>
+            <li><strong>Element:</strong> The complete structure, including its tag and content.</li>
+            <li><strong>Attribute:</strong> Additional information inside a start tag, such as <code>href</code>.</li>
+            <li><strong>Hyperlink:</strong> A clickable reference that connects one resource to another.</li>
+          </ul>
+          <div class="u1-callout"><strong>Remember:</strong> The Internet is the underlying network. The Web is one service that uses that network. HTML structures web content; CSS styles it and JavaScript can add behaviour.</div>
+          <div class="u1-exam"><h3>✦ Exam-ready explanation</h3><p>The World Wide Web is an information system of interlinked resources accessed through the Internet. HTML is a markup language used to organise web-page content using elements such as headings, paragraphs, links, images and tables.</p></div>
+        </section>
+
+        <section class="u1-section" id="http-smtp">
+          <div class="u1-section-head"><span class="u1-index">03</span><div><h2>Protocols: HTTP and SMTP</h2><span class="u1-muted">Rules that allow web clients, servers and mail systems to communicate</span></div></div>
+          <h3>HTTP — HyperText Transfer Protocol</h3>
+          <p>HTTP is an application-layer protocol used to transfer web resources between a client (such as a browser) and a web server. It follows a request-response model: the client sends a request and the server returns a response.</p>
+          <ul>
+            <li><strong>GET:</strong> Requests a resource from the server.</li>
+            <li><strong>POST:</strong> Sends data to the server, often to submit a form.</li>
+            <li><strong>PUT:</strong> Creates or replaces a resource at a specified location.</li>
+            <li><strong>DELETE:</strong> Requests deletion of a resource.</li>
+          </ul>
+          <div class="u1-table-wrap"><table class="u1-table">
+            <tr><th>Item</th><th>Meaning</th></tr>
+            <tr><td>80</td><td>Default port commonly used by HTTP.</td></tr>
+            <tr><td>200 OK</td><td>Request was successful.</td></tr>
+            <tr><td>404 Not Found</td><td>The requested resource was not found.</td></tr>
+            <tr><td>500 Internal Server Error</td><td>The server encountered an unexpected condition.</td></tr>
+          </table></div>
+          <p>HTTP is described as <strong>stateless</strong> because each request is handled independently by default. Cookies and sessions are commonly used by web applications to maintain user-related state.</p>
+          <h3>SMTP — Simple Mail Transfer Protocol</h3>
+          <p>SMTP is an application-layer protocol used to send outgoing email. It transfers messages from a mail client to a mail server and between mail servers.</p>
+          <ul>
+            <li><strong>Port 25:</strong> Commonly used for mail-server-to-mail-server transfer.</li>
+            <li><strong>Port 587:</strong> Commonly used for authenticated email submission.</li>
+            <li>SMTP is used for sending mail; POP3 and IMAP are commonly used to retrieve or access received mail.</li>
+          </ul>
+          <div class="u1-flow"><span>Sender's mail app</span><i>→</i><span>SMTP server</span><i>→</i><span>Recipient's mail server</span></div>
+          <div class="u1-exam"><h3>✦ Exam-ready explanation</h3><p>HTTP transfers web resources through a client-server request-response process. SMTP is used to send and relay outgoing email between mail systems. HTTP commonly uses port 80, while SMTP commonly uses port 25 or 587 for submission.</p></div>
+        </section>
+
+        <section class="u1-section" id="pop3-mime-imap">
+          <div class="u1-section-head"><span class="u1-index">04</span><div><h2>Protocols: POP3, MIME and IMAP</h2><span class="u1-muted">How email is retrieved, synchronised and formatted</span></div></div>
+          <h3>POP3 — Post Office Protocol version 3</h3>
+          <p>POP3 is used by an email client to retrieve messages from a mail server. In a typical setup, messages are downloaded to the device. Depending on the settings, the server may delete the downloaded messages or keep a copy.</p>
+          <h3>IMAP — Internet Message Access Protocol</h3>
+          <p>IMAP allows users to access and manage email stored on a mail server. Messages, folders and read/unread status can remain synchronised across multiple devices.</p>
+          <h3>MIME — Multipurpose Internet Mail Extensions</h3>
+          <p>MIME extends the basic email message format so that email can include different content types, such as images, audio, documents and other attachments. MIME headers identify the type and format of message content.</p>
+          <div class="u1-table-wrap"><table class="u1-table">
+            <tr><th>Protocol / Standard</th><th>Main purpose</th><th>Common default port</th></tr>
+            <tr><td>SMTP</td><td>Send outgoing email</td><td>25 (submission commonly 587)</td></tr>
+            <tr><td>POP3</td><td>Download/retrieve email</td><td>110</td></tr>
+            <tr><td>IMAP</td><td>Access and synchronise server-stored email</td><td>143</td></tr>
+            <tr><td>MIME</td><td>Describe and encode different email content types</td><td>Not a transport protocol / no port</td></tr>
+          </table></div>
+          <h3>POP3 vs IMAP</h3>
+          <div class="u1-table-wrap"><table class="u1-table">
+            <tr><th>POP3</th><th>IMAP</th></tr>
+            <tr><td>Usually downloads messages to a device.</td><td>Usually keeps messages on the server.</td></tr>
+            <tr><td>Less suitable for synchronising many devices.</td><td>Suitable for using the same mailbox on multiple devices.</td></tr>
+            <tr><td>Useful when users want local message copies.</td><td>Useful when users need folders and message status synchronised.</td></tr>
+          </table></div>
+          <div class="u1-callout"><strong>Easy way to remember:</strong> SMTP = Send, POP3 = Download, IMAP = Synchronise/access, MIME = Attachments and media formats.</div>
+          <div class="u1-exam"><h3>✦ Exam-ready explanation</h3><p>POP3 retrieves email by downloading messages from a server. IMAP manages email stored on the server and supports synchronisation across devices. MIME extends email formatting to support attachments and different types of media.</p></div>
+        </section>
+
+        <section class="u1-section" id="dns">
+          <div class="u1-section-head"><span class="u1-index">05</span><div><h2>Domain Name System (DNS)</h2><span class="u1-muted">The Internet's naming and directory service</span></div></div>
+          <p><strong>DNS</strong> is a distributed naming system that translates human-readable domain names, such as <code>www.example.com</code>, into IP addresses that computers use to locate network services.</p>
+          <h3>How DNS lookup works</h3>
+          <ol>
+            <li>The browser checks its DNS cache.</li>
+            <li>If the address is not cached, the device asks a recursive DNS resolver.</li>
+            <li>The resolver may query a root DNS server to find the relevant top-level domain (TLD) server.</li>
+            <li>The TLD server points the resolver towards the domain's authoritative name server.</li>
+            <li>The authoritative server provides the required DNS record, and the result is returned and may be cached.</li>
+          </ol>
+          <div class="u1-flow"><span>Browser / device</span><i>→</i><span>Recursive resolver</span><i>→</i><span>Root server</span><i>→</i><span>TLD server</span><i>→</i><span>Authoritative DNS</span></div>
+          <h3>Common DNS records</h3>
+          <div class="u1-table-wrap"><table class="u1-table">
+            <tr><th>Record</th><th>Purpose</th></tr>
+            <tr><td>A</td><td>Maps a domain name to an IPv4 address.</td></tr>
+            <tr><td>AAAA</td><td>Maps a domain name to an IPv6 address.</td></tr>
+            <tr><td>CNAME</td><td>Creates an alias from one domain name to another.</td></tr>
+            <tr><td>MX</td><td>Identifies mail servers for a domain.</td></tr>
+            <tr><td>NS</td><td>Identifies the authoritative name servers for a domain.</td></tr>
+          </table></div>
+          <div class="u1-exam"><h3>✦ Exam-ready explanation</h3><p>DNS stands for Domain Name System. It converts domain names into IP addresses so that users can access Internet services using easy-to-remember names instead of numeric addresses. DNS uses a distributed hierarchy of DNS servers and supports records such as A, AAAA, CNAME and MX.</p></div>
+        </section>
+
+        <section class="u1-section" id="browsers">
+          <div class="u1-section-head"><span class="u1-index">06</span><div><h2>Web Browsers</h2><span class="u1-muted">Client software that retrieves and displays web pages</span></div></div>
+          <p>A <strong>web browser</strong> is application software that allows users to access websites. It sends requests to web servers, receives resources such as HTML, CSS, JavaScript and images, and displays the resulting page.</p>
+          <h3>Main functions</h3>
+          <ul>
+            <li>Accepts URLs and sends requests to web servers.</li>
+            <li>Processes HTML to build the page structure (DOM).</li>
+            <li>Processes CSS to calculate the visual layout and appearance.</li>
+            <li>Executes JavaScript to support interactive behaviour.</li>
+            <li>Displays text, images, video and other web resources.</li>
+            <li>Provides features such as bookmarks, history, downloads and developer tools.</li>
+          </ul>
+          <div class="u1-table-wrap"><table class="u1-table">
+            <tr><th>Browser</th><th>Rendering engine commonly associated with it</th></tr>
+            <tr><td>Google Chrome</td><td>Blink</td></tr>
+            <tr><td>Microsoft Edge</td><td>Blink</td></tr>
+            <tr><td>Mozilla Firefox</td><td>Gecko</td></tr>
+            <tr><td>Apple Safari</td><td>WebKit</td></tr>
+          </table></div>
+          <div class="u1-callout"><strong>Examples:</strong> Google Chrome, Mozilla Firefox, Microsoft Edge, Apple Safari and Opera.</div>
+          <div class="u1-exam"><h3>✦ Exam-ready explanation</h3><p>A web browser is client-side software used to access and display web pages. It communicates with web servers, interprets HTML, applies CSS, executes JavaScript and renders the final page for the user.</p></div>
+        </section>
+
+        <section class="u1-section" id="servers">
+          <div class="u1-section-head"><span class="u1-index">07</span><div><h2>Web Servers</h2><span class="u1-muted">Systems that receive browser requests and deliver web content</span></div></div>
+          <p>A <strong>web server</strong> is software, running on a computer, that accepts HTTP/HTTPS requests and sends responses to clients. The term can also refer to the computer or hosting system on which the server software runs.</p>
+          <h3>Types of web content</h3>
+          <ul>
+            <li><strong>Static content:</strong> Stored files such as HTML pages, CSS files, images and documents are delivered to the client.</li>
+            <li><strong>Dynamic content:</strong> The server runs application logic or communicates with a database to create a response based on the request.</li>
+          </ul>
+          <h3>Examples of web-server software</h3>
+          <div class="u1-table-wrap"><table class="u1-table">
+            <tr><th>Server software</th><th>General description</th></tr>
+            <tr><td>Apache HTTP Server</td><td>Widely used open-source web-server software.</td></tr>
+            <tr><td>Nginx</td><td>Web server commonly used for serving content and as a reverse proxy.</td></tr>
+            <tr><td>Microsoft IIS</td><td>Web-server platform for Windows environments.</td></tr>
+            <tr><td>Apache Tomcat</td><td>Server environment commonly used for Java web applications and servlets.</td></tr>
+          </table></div>
+          <h3>Browser and server communication</h3>
+          <div class="u1-flow"><span>User enters URL</span><i>→</i><span>Browser finds server</span><i>→</i><span>HTTP request</span><i>→</i><span>Web server</span><i>→</i><span>HTTP response</span><i>→</i><span>Page displayed</span></div>
+          <div class="u1-exam"><h3>✦ Exam-ready explanation</h3><p>A web server is a system that receives requests from web clients and returns web resources through HTTP or HTTPS. It can deliver static files directly or generate dynamic responses using server-side programs and databases.</p></div>
+        </section>
+
+        <section class="u1-section" id="revision">
+          <div class="u1-section-head"><span class="u1-index">↻</span><div><h2>Quick Revision Deck</h2><span class="u1-muted">Short facts to review before the examination</span></div></div>
+          <div class="u1-revision">
+            <div><strong>Internet</strong><br>Global network of interconnected networks.</div>
+            <div><strong>WWW</strong><br>Interlinked web resources accessed over the Internet.</div>
+            <div><strong>HTML</strong><br>Structures the content of web pages.</div>
+            <div><strong>HTTP</strong><br>Transfers web resources using requests and responses.</div>
+            <div><strong>SMTP</strong><br>Sends outgoing email.</div>
+            <div><strong>POP3</strong><br>Retrieves email, commonly by downloading it.</div>
+            <div><strong>IMAP</strong><br>Accesses and synchronises server-stored email.</div>
+            <div><strong>MIME</strong><br>Supports attachments and different email content types.</div>
+            <div><strong>DNS</strong><br>Resolves domain names into IP addresses.</div>
+            <div><strong>Browser</strong><br>Client software that renders web pages.</div>
+            <div><strong>Web server</strong><br>Receives requests and returns web content.</div>
+            <div><strong>TCP/IP</strong><br>Core protocol suite used for Internet communication.</div>
+          </div>
+          <h3>Common port numbers</h3>
+          <div class="u1-table-wrap"><table class="u1-table">
+            <tr><th>Service</th><th>Common default port</th></tr>
+            <tr><td>HTTP</td><td>80</td></tr>
+            <tr><td>HTTPS</td><td>443</td></tr>
+            <tr><td>SMTP</td><td>25 (submission commonly 587)</td></tr>
+            <tr><td>POP3</td><td>110</td></tr>
+            <tr><td>IMAP</td><td>143</td></tr>
+            <tr><td>DNS</td><td>53</td></tr>
+          </table></div>
+        </section>
+
+        <section class="u1-section" id="questions">
+          <div class="u1-section-head"><span class="u1-index">?</span><div><h2>Important Exam Questions</h2><span class="u1-muted">Practise definitions, explanations and comparisons</span></div></div>
+          <div class="u1-question-level">
+            <h3><span class="u1-level">L1</span> Remember</h3>
+            <ol>
+              <li>Define the Internet and the World Wide Web.</li>
+              <li>Write the full forms of HTTP, SMTP, POP3, MIME, IMAP and DNS.</li>
+              <li>What is HTML? What is a web browser?</li>
+              <li>List any four common DNS record types.</li>
+            </ol>
+          </div>
+          <div class="u1-question-level">
+            <h3><span class="u1-level">L2</span> Understand</h3>
+            <ol>
+              <li>Explain the important milestones in the history of the Internet.</li>
+              <li>Explain the purpose of HTTP and SMTP.</li>
+              <li>Describe the role of MIME in email communication.</li>
+              <li>Explain how DNS resolves a domain name.</li>
+              <li>Describe the main functions of a web browser and a web server.</li>
+            </ol>
+          </div>
+          <div class="u1-question-level">
+            <h3><span class="u1-level">L3</span> Apply</h3>
+            <ol>
+              <li>Choose SMTP, POP3 or IMAP for sending mail, downloading mail and synchronising mail across devices.</li>
+              <li>Identify the DNS record needed to map a domain to an IPv4 address or identify its mail server.</li>
+              <li>Draw the communication flow when a browser opens a website.</li>
+            </ol>
+          </div>
+          <div class="u1-question-level">
+            <h3><span class="u1-level">L4</span> Analyse</h3>
+            <ol>
+              <li>Differentiate between the Internet and the World Wide Web.</li>
+              <li>Compare POP3 and IMAP.</li>
+              <li>Differentiate between a web browser and a web server.</li>
+            </ol>
+          </div>
+          <div class="u1-question-level">
+            <h3><span class="u1-level">L5–L6</span> Evaluate and Create</h3>
+            <ol>
+              <li>Justify why IMAP is useful when a user accesses email on multiple devices.</li>
+              <li>Explain why DNS is important for user-friendly Internet access.</li>
+              <li>Design a simple flow diagram showing how a user accesses a web page from entering a URL to viewing the page.</li>
+            </ol>
+          </div>
+        </section>
+
+        <nav class="u1-pager">
+          <a href="index.html">← Course units</a>
+          <a href="unit-2.html">Continue to Unit 2 →</a>
+        </nav>
+      </main>
+    </div>
+  </div>
+
+  <footer class="u1-footer">
+    <b>VIVEK RANA</b> · B.Tech CSE · Quantum University<br>
+    Web Technology / CS35302 · 2026 - 27
+  </footer>
+</body>
+</html>

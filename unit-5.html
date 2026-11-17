@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Unit 5 | Web Technology Notes</title>
+
+<style>
+
+:root {
+    --primary: #075985;
+    --secondary: #0891b2;
+    --accent: #22d3ee;
+    --dark: #082f49;
+    --light: #ecfeff;
+    --bg: #f0f9ff;
+    --text: #243746;
+    --white: #ffffff;
+    --border: #bae6fd;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+header {
+    background: linear-gradient(120deg, #082f49, #075985, #0891b2);
+    color: white;
+    padding: 35px 25px;
+}
+
+.header-content {
+    max-width: 1250px;
+    margin: auto;
+}
+
+header h1 {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+header p {
+    color: #cffafe;
+    font-size: 15px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    max-width: 1450px;
+    margin: auto;
+    gap: 25px;
+    padding: 25px;
+}
+
+.sidebar {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    height: fit-content;
+    position: sticky;
+    top: 15px;
+}
+
+.sidebar h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.sidebar a {
+    display: block;
+    color: #334155;
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.sidebar a:hover {
+    background: var(--light);
+    color: var(--secondary);
+}
+
+main {
+    min-width: 0;
+}
+
+section {
+    background: white;
+    padding: 27px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    box-shadow: 0 3px 12px rgba(8, 47, 73, 0.04);
+}
+
+section h2 {
+    color: var(--primary);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+    font-size: 24px;
+}
+
+section h3 {
+    color: #0e7490;
+    margin: 20px 0 8px;
+    font-size: 19px;
+}
+
+p {
+    margin-bottom: 12px;
+}
+
+ul, ol {
+    margin: 10px 0 15px 25px;
+}
+
+li {
+    margin-bottom: 7px;
+}
+
+strong {
+    color: var(--dark);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 17px 0;
+    font-size: 14px;
+}
+
+th {
+    background: var(--primary);
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+td {
+    padding: 11px;
+    border: 1px solid #cbd5e1;
+}
+
+tr:nth-child(even) {
+    background: #f0f9ff;
+}
+
+.box {
+    background: #ecfeff;
+    border-left: 4px solid var(--secondary);
+    padding: 15px;
+    border-radius: 6px;
+    margin: 16px 0;
+}
+
+.example {
+    background: #f0fdf4;
+    border-left: 4px solid #16a34a;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 15px 0;
+}
+
+.warning {
+    background: #fff7ed;
+    border-left: 4px solid #f97316;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 15px 0;
+}
+
+.diagram {
+    background: #082f49;
+    color: #cffafe;
+    padding: 20px;
+    border-radius: 9px;
+    text-align: center;
+    font-family: monospace;
+    white-space: pre-line;
+    margin: 18px 0;
+    overflow-x: auto;
+}
+
+.tag {
+    display: inline-block;
+    background: #cffafe;
+    color: #155e75;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin: 3px;
+}
+
+.code {
+    background: #0f172a;
+    color: #a5f3fc;
+    padding: 17px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 15px 0;
+    font-family: Consolas, monospace;
+    font-size: 13px;
+}
+
+.question {
+    background: #f8fafc;
+    padding: 13px;
+    margin: 9px 0;
+    border-radius: 7px;
+    border-left: 3px solid var(--secondary);
+}
+
+footer {
+    text-align: center;
+    background: var(--dark);
+    color: white;
+    padding: 25px;
+    margin-top: 25px;
+}
+
+footer p {
+    color: #cffafe;
+    margin: 0;
+}
+
+@media(max-width: 850px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: static;
+    }
+
+    header h1 {
+        font-size: 27px;
+    }
+
+    section {
+        padding: 19px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-content">
+        <h1>UNIT 5: Web 4.0 and Emerging Web Technologies</h1>
+        <p>Web Technology | Complete Study Notes | B.Tech CSE / Data Science</p>
+        <br>
+        <span class="tag">Artificial Intelligence</span>
+        <span class="tag">Blockchain</span>
+        <span class="tag">IoT</span>
+        <span class="tag">AR / VR</span>
+        <span class="tag">5G</span>
+    </div>
+</header>
+
+<div class="container">
+
+<aside class="sidebar">
+
+    <h3>📚 Unit Contents</h3>
+
+    <a href="#intro">1. Introduction to Web 4.0</a>
+    <a href="#ai">2. AI-Powered Web</a>
+    <a href="#personalization">3. Personalized Content</a>
+    <a href="#dweb">4. Decentralized Web</a>
+    <a href="#blockchain">5. Blockchain Integration</a>
+    <a href="#iot">6. IoT in Web Development</a>
+    <a href="#arvr">7. AR and VR in Web</a>
+    <a href="#smart">8. Smart Web</a>
+    <a href="#adaptive">9. Adaptive Interfaces</a>
+    <a href="#automation">10. Web Automation</a>
+    <a href="#5g">11. Impact of 5G</a>
+    <a href="#revision">12. Quick Revision</a>
+    <a href="#questions">13. Important Questions</a>
+
+</aside>
+
+<main>
+
+<!-- INTRODUCTION -->
+
+<section id="intro">
+
+<h2>1. Introduction to Web 4.0</h2>
+
+<h3>What is Web 4.0?</h3>
+
+<p>
+Web 4.0 is an emerging concept of the internet that focuses on
+intelligent, connected and highly personalized digital experiences.
+It uses technologies such as Artificial Intelligence, Machine
+Learning, Internet of Things, Blockchain and advanced connectivity.
+</p>
+
+<p>
+The main objective of Web 4.0 is to make the web smarter and more
+interactive, allowing computers, devices and users to communicate
+and work together intelligently.
+</p>
+
+<div class="box">
+<strong>Simple Definition:</strong>
+Web 4.0 is an intelligent and connected web where AI, smart devices
+and advanced technologies work together to provide personalized
+and automated services.
+</div>
+
+<h3>Evolution of the Web</h3>
+
+<table>
+<tr>
+<th>Web Generation</th>
+<th>Main Concept</th>
+<th>Characteristics</th>
+</tr>
+
+<tr>
+<td>Web 1.0</td>
+<td>Read-only Web</td>
+<td>Static websites, limited interaction.</td>
+</tr>
+
+<tr>
+<td>Web 2.0</td>
+<td>Read and Write Web</td>
+<td>Social media, blogs, wikis and user-generated content.</td>
+</tr>
+
+<tr>
+<td>Web 3.0</td>
+<td>Semantic and Decentralized Web</td>
+<td>Meaningful data, linked information and decentralization.</td>
+</tr>
+
+<tr>
+<td>Web 4.0</td>
+<td>Intelligent and Connected Web</td>
+<td>AI, automation, smart devices and personalized experiences.</td>
+</tr>
+</table>
+
+<div class="diagram">
+WEB EVOLUTION
+
+Web 1.0
+Static Information
+      |
+      v
+Web 2.0
+Social and Interactive Web
+      |
+      v
+Web 3.0
+Semantic and Decentralized Web
+      |
+      v
+Web 4.0
+Intelligent and Connected Web
+</div>
+
+<h3>Important Features of Web 4.0</h3>
+
+<ul>
+<li>Artificial Intelligence and Machine Learning.</li>
+<li>Personalized content and recommendations.</li>
+<li>Integration of IoT devices.</li>
+<li>Blockchain-based decentralized services.</li>
+<li>Smart and adaptive interfaces.</li>
+<li>Automation of web-based tasks.</li>
+<li>Advanced connectivity through 5G.</li>
+</ul>
+
+<h3>Applications</h3>
+
+<ul>
+<li>Smart homes.</li>
+<li>Intelligent healthcare systems.</li>
+<li>Personalized e-commerce platforms.</li>
+<li>Smart education platforms.</li>
+<li>Connected vehicles.</li>
+<li>Virtual shopping experiences.</li>
+</ul>
+
+</section>
+
+<!-- AI -->
+
+<section id="ai">
+
+<h2>2. AI-Powered Web</h2>
+
+<h3>What is an AI-Powered Web?</h3>
+
+<p>
+An AI-powered web uses Artificial Intelligence and Machine Learning
+to make websites and web applications more intelligent.
+It allows websites to understand user behaviour, process information
+and provide automated responses.
+</p>
+
+<div class="box">
+<strong>Example:</strong>
+When a shopping website suggests products based on your previous
+searches and purchases, it is using AI-powered technology.
+</div>
+
+<h3>Technologies Used</h3>
+
+<ul>
+<li><strong>Artificial Intelligence:</strong> Enables machines to perform tasks that normally require human intelligence.</li>
+<li><strong>Machine Learning:</strong> Helps systems learn patterns from data and improve predictions.</li>
+<li><strong>Natural Language Processing (NLP):</strong> Helps computers understand human language.</li>
+<li><strong>Computer Vision:</strong> Allows computers to understand images and videos.</li>
+<li><strong>Recommendation Algorithms:</strong> Suggest relevant content and products.</li>
+</ul>
+
+<h3>Working of AI-Powered Web</h3>
+
+<div class="diagram">
+User Visits Website
+        |
+        v
+Website Collects User Input
+        |
+        v
+AI / ML Model Processes Data
+        |
+        v
+System Identifies User Requirements
+        |
+        v
+Personalized Results or Response
+</div>
+
+<h3>Applications</h3>
+
+<table>
+<tr>
+<th>Application</th>
+<th>Use</th>
+</tr>
+
+<tr>
+<td>Chatbots</td>
+<td>Answer user questions automatically.</td>
+</tr>
+
+<tr>
+<td>E-commerce</td>
+<td>Suggest relevant products.</td>
+</tr>
+
+<tr>
+<td>Healthcare</td>
+<td>Assist with information and digital services.</td>
+</tr>
+
+<tr>
+<td>Education</td>
+<td>Provide personalized learning recommendations.</td>
+</tr>
+
+<tr>
+<td>Search Engines</td>
+<td>Improve search relevance and understanding.</td>
+</tr>
+</table>
+
+<h3>Advantages</h3>
+
+<ul>
+<li>Improves user experience.</li>
+<li>Provides faster responses.</li>
+<li>Reduces repetitive manual work.</li>
+<li>Supports intelligent recommendations.</li>
+<li>Helps businesses understand customer behaviour.</li>
+</ul>
+
+<h3>Limitations</h3>
+
+<ul>
+<li>Requires large amounts of data in many applications.</li>
+<li>Privacy and security concerns.</li>
+<li>AI-generated results may be incorrect.</li>
+<li>Implementation and maintenance costs.</li>
+</ul>
+
+</section>
+
+<!-- PERSONALIZATION -->
+
+<section id="personalization">
+
+<h2>3. Personalized Content</h2>
+
+<h3>Meaning</h3>
+
+<p>
+Personalized content means displaying information, products,
+services or recommendations according to an individual user's
+interests, behaviour, location or preferences.
+</p>
+
+<div class="example">
+<strong>Example:</strong>
+YouTube recommends videos according to your watch history.
+Similarly, Netflix recommends movies based on your viewing habits.
+</div>
+
+<h3>How Personalized Content Works</h3>
+
+<ol>
+<li>Collect user information and interaction data.</li>
+<li>Analyze browsing history and preferences.</li>
+<li>Identify user interests using algorithms.</li>
+<li>Select relevant content.</li>
+<li>Display customized results.</li>
+</ol>
+
+<h3>Types of Personalization</h3>
+
+<ul>
+<li><strong>Behavioural Personalization:</strong> Based on user browsing and activity.</li>
+<li><strong>Location-Based Personalization:</strong> Based on geographical location.</li>
+<li><strong>Interest-Based Personalization:</strong> Based on selected interests.</li>
+<li><strong>Purchase-Based Personalization:</strong> Based on previous purchases.</li>
+<li><strong>Contextual Personalization:</strong> Based on the current situation or context.</li>
+</ul>
+
+<h3>Benefits</h3>
+
+<ul>
+<li>Improves customer satisfaction.</li>
+<li>Increases user engagement.</li>
+<li>Saves time by showing relevant information.</li>
+<li>Improves product discovery.</li>
+<li>Supports business growth.</li>
+</ul>
+
+<h3>Challenges</h3>
+
+<ul>
+<li>Data privacy.</li>
+<li>Excessive data collection.</li>
+<li>Biased recommendations.</li>
+<li>Security risks.</li>
+<li>Creation of filter bubbles, where users repeatedly see similar content.</li>
+</ul>
+
+</section>
+
+<!-- DECENTRALIZED WEB -->
+
+<section id="dweb">
+
+<h2>4. Decentralized Web (DWeb)</h2>
+
+<h3>What is Decentralized Web?</h3>
+
+<p>
+The Decentralized Web, also called DWeb, is an approach to building
+internet services where data and services are distributed across
+multiple computers or networks instead of depending entirely on
+centralized servers.
+</p>
+
+<p>
+It aims to provide greater user control, data ownership and
+resistance to single points of failure.
+</p>
+
+<div class="box">
+<strong>Simple Example:</strong>
+In a traditional website, data may be stored on one company's
+centralized servers. In a decentralized system, information can
+be distributed across multiple network participants.
+</div>
+
+<h3>Centralized vs Decentralized Web</h3>
+
+<table>
+<tr>
+<th>Centralized Web</th>
+<th>Decentralized Web</th>
+</tr>
+
+<tr>
+<td>Controlled by a central authority.</td>
+<td>Control is distributed among participants.</td>
+</tr>
+
+<tr>
+<td>Data often stored on central servers.</td>
+<td>Data may be distributed across multiple nodes.</td>
+</tr>
+
+<tr>
+<td>Central server can become a single point of failure.</td>
+<td>Distributed architecture can reduce single points of failure.</td>
+</tr>
+
+<tr>
+<td>Users depend on service providers.</td>
+<td>Users may have greater control over their data and identity.</td>
+</tr>
+
+<tr>
+<td>Example: Traditional hosted websites.</td>
+<td>Example: Peer-to-peer applications and decentralized storage networks.</td>
+</tr>
+</table>
+
+<h3>Important Technologies</h3>
+
+<ul>
+<li>Peer-to-Peer (P2P) Networks.</li>
+<li>Blockchain.</li>
+<li>Distributed File Systems.</li>
+<li>Cryptographic Identity.</li>
+<li>Decentralized Storage.</li>
+<li>Smart Contracts.</li>
+</ul>
+
+<h3>Advantages</h3>
+
+<ul>
+<li>Greater user control.</li>
+<li>Reduced dependence on central authorities.</li>
+<li>Distributed data storage.</li>
+<li>Potentially improved fault tolerance.</li>
+<li>Supports transparent digital transactions.</li>
+</ul>
+
+<h3>Challenges</h3>
+
+<ul>
+<li>Complex implementation.</li>
+<li>Scalability issues.</li>
+<li>Storage and network limitations.</li>
+<li>Usability challenges.</li>
+<li>Security and governance concerns.</li>
+</ul>
+
+</section>
+
+<!-- BLOCKCHAIN -->
+
+<section id="blockchain">
+
+<h2>5. Blockchain Integration in Web Development</h2>
+
+<h3>What is Blockchain?</h3>
+
+<p>
+Blockchain is a distributed digital ledger that stores information
+in blocks connected together using cryptographic techniques.
+Once recorded and confirmed, information is designed to be
+difficult to modify without detection.
+</p>
+
+<div class="box">
+<strong>Simple Definition:</strong>
+Blockchain is a shared digital record system in which transactions
+are stored in connected blocks and verified by a network.
+</div>
+
+<h3>Basic Structure of Blockchain</h3>
+
+<div class="diagram">
++-------------+       +-------------+       +-------------+
+|   BLOCK 1   | ----> |   BLOCK 2   | ----> |   BLOCK 3   |
++-------------+       +-------------+       +-------------+
+| Data        |       | Data        |       | Data        |
+| Hash        |       | Hash        |       | Hash        |
+| Previous    |       | Previous    |       | Previous    |
+| Hash        |       | Hash        |       | Hash        |
++-------------+       +-------------+       +-------------+
+</div>
+
+<h3>Important Components</h3>
+
+<ul>
+<li><strong>Block:</strong> Stores transaction or other digital information.</li>
+<li><strong>Hash:</strong> A cryptographic value representing block data.</li>
+<li><strong>Previous Hash:</strong> Connects a block to the previous block.</li>
+<li><strong>Node:</strong> A computer participating in the blockchain network.</li>
+<li><strong>Consensus Mechanism:</strong> A method used by network participants to agree on valid transactions.</li>
+<li><strong>Smart Contract:</strong> A program stored and executed on a blockchain platform.</li>
+</ul>
+
+<h3>How Blockchain Works</h3>
+
+<ol>
+<li>A user initiates a transaction.</li>
+<li>The transaction is broadcast to the network.</li>
+<li>Network participants validate the transaction.</li>
+<li>Valid transactions are grouped into a block.</li>
+<li>The block is added to the blockchain through the network's consensus process.</li>
+<li>Participants update their copies of the ledger.</li>
+</ol>
+
+<h3>Blockchain Integration in Web Applications</h3>
+
+<p>
+Web applications can connect with blockchain networks through
+wallets, APIs, smart contracts and blockchain development libraries.
+</p>
+
+<div class="diagram">
+User
+ |
+ v
+Web Application (HTML / CSS / JavaScript)
+ |
+ v
+Web3 Library / Blockchain API
+ |
+ v
+Blockchain Network
+ |
+ v
+Smart Contract
+ |
+ v
+Transaction Result
+</div>
+
+<h3>Applications in Web Development</h3>
+
+<table>
+<tr>
+<th>Application</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>Digital Payments</td>
+<td>Supports blockchain-based transactions.</td>
+</tr>
+
+<tr>
+<td>Supply Chain</td>
+<td>Tracks products and transaction history.</td>
+</tr>
+
+<tr>
+<td>Digital Identity</td>
+<td>Supports decentralized identity systems.</td>
+</tr>
+
+<tr>
+<td>NFT Platforms</td>
+<td>Manages blockchain-based digital assets.</td>
+</tr>
+
+<tr>
+<td>Smart Contracts</td>
+<td>Automates predefined agreements.</td>
+</tr>
+
+<tr>
+<td>Decentralized Applications</td>
+<td>Connects users with decentralized services.</td>
+</tr>
+</table>
+
+<h3>Advantages</h3>
+
+<ul>
+<li>Transparency.</li>
+<li>Data integrity.</li>
+<li>Reduced dependence on intermediaries in suitable applications.</li>
+<li>Traceability of transactions.</li>
+<li>Automation using smart contracts.</li>
+</ul>
+
+<h3>Limitations</h3>
+
+<ul>
+<li>Transaction processing can be slow on some networks.</li>
+<li>Transaction fees may be high.</li>
+<li>Integration can be technically complex.</li>
+<li>Some blockchain networks consume significant energy.</li>
+<li>Regulatory and privacy challenges.</li>
+</ul>
+
+</section>
+
+<!-- IOT -->
+
+<section id="iot">
+
+<h2>6. Internet of Things (IoT) in Web Development</h2>
+
+<h3>What is IoT?</h3>
+
+<p>
+The Internet of Things (IoT) is a network of physical devices
+connected to the internet. These devices contain sensors, software
+and communication technologies that allow them to collect and
+exchange data.
+</p>
+
+<div class="example">
+<strong>Example:</strong>
+A smart AC connected to a mobile application can be monitored
+and controlled through the internet.
+</div>
+
+<h3>Components of IoT</h3>
+
+<ul>
+<li><strong>Sensors:</strong> Collect information such as temperature, humidity and motion.</li>
+<li><strong>Connectivity:</strong> Transfers data using Wi-Fi, Bluetooth or cellular networks.</li>
+<li><strong>Processing:</strong> Analyzes collected information.</li>
+<li><strong>Cloud Platform:</strong> Stores and manages device data.</li>
+<li><strong>User Interface:</strong> Allows users to monitor and control devices.</li>
+<li><strong>Actuators:</strong> Perform physical actions based on instructions.</li>
+</ul>
+
+<h3>IoT Architecture</h3>
+
+<div class="diagram">
+Physical Device / Sensor
+          |
+          v
+Communication Network
+(Wi-Fi / Bluetooth / 5G)
+          |
+          v
+Cloud / IoT Platform
+          |
+          v
+Data Processing
+          |
+          v
+Web Application / Dashboard
+          |
+          v
+User Monitoring and Control
+</div>
+
+<h3>Role of Web Development in IoT</h3>
+
+<ul>
+<li>Developing dashboards for monitoring devices.</li>
+<li>Displaying real-time sensor data.</li>
+<li>Sending commands to connected devices.</li>
+<li>Managing device information.</li>
+<li>Generating reports and visualizations.</li>
+<li>Connecting devices with cloud-based services.</li>
+</ul>
+
+<h3>Applications</h3>
+
+<table>
+<tr>
+<th>Field</th>
+<th>Example</th>
+</tr>
+
+<tr>
+<td>Smart Home</td>
+<td>Smart lights, fans and security systems.</td>
+</tr>
+
+<tr>
+<td>Healthcare</td>
+<td>Wearable health-monitoring devices.</td>
+</tr>
+
+<tr>
+<td>Agriculture</td>
+<td>Soil moisture monitoring and smart irrigation.</td>
+</tr>
+
+<tr>
+<td>Industry</td>
+<td>Machine monitoring and predictive maintenance.</td>
+</tr>
+
+<tr>
+<td>Transportation</td>
+<td>Vehicle tracking and fleet monitoring.</td>
+</tr>
+</table>
+
+<h3>Advantages</h3>
+
+<ul>
+<li>Remote monitoring.</li>
+<li>Automation.</li>
+<li>Real-time data collection.</li>
+<li>Improved operational efficiency.</li>
+<li>Better decision-making.</li>
+</ul>
+
+<h3>Challenges</h3>
+
+<ul>
+<li>Device security.</li>
+<li>Data privacy.</li>
+<li>Network connectivity.</li>
+<li>Compatibility between devices.</li>
+<li>Large-scale data management.</li>
+</ul>
+
+</section>
+
+<!-- AR VR -->
+
+<section id="arvr">
+
+<h2>7. Augmented Reality (AR) and Virtual Reality (VR) in Web</h2>
+
+<h3>What is Augmented Reality (AR)?</h3>
+
+<p>
+Augmented Reality adds digital objects, images or information
+to the real-world environment.
+It enhances what a user sees in the physical world.
+</p>
+
+<div class="example">
+<strong>Example:</strong>
+A furniture shopping application that allows users to see how
+a virtual sofa would look inside their actual room.
+</div>
+
+<h3>What is Virtual Reality (VR)?</h3>
+
+<p>
+Virtual Reality creates a computer-generated environment in which
+users can interact with a simulated world.
+It usually requires a VR headset or compatible device.
+</p>
+
+<div class="example">
+<strong>Example:</strong>
+A virtual museum tour where users explore a computer-generated
+museum using a VR headset.
+</div>
+
+<h3>AR vs VR</h3>
+
+<table>
+<tr>
+<th>Augmented Reality (AR)</th>
+<th>Virtual Reality (VR)</th>
+</tr>
+
+<tr>
+<td>Combines digital content with the real world.</td>
+<td>Creates a simulated virtual environment.</td>
+</tr>
+
+<tr>
+<td>User can see the physical environment.</td>
+<td>User is immersed in a virtual environment.</td>
+</tr>
+
+<tr>
+<td>Can work on smartphones and AR devices.</td>
+<td>Often uses VR headsets.</td>
+</tr>
+
+<tr>
+<td>Example: Virtual furniture placement.</td>
+<td>Example: Virtual gaming environment.</td>
+</tr>
+</table>
+
+<h3>Web Technologies Used</h3>
+
+<ul>
+<li>WebXR API.</li>
+<li>JavaScript.</li>
+<li>WebGL.</li>
+<li>Three.js.</li>
+<li>3D models and rendering technologies.</li>
+</ul>
+
+<h3>Applications in Web Development</h3>
+
+<ul>
+<li><strong>E-commerce:</strong> Virtual product previews.</li>
+<li><strong>Education:</strong> Interactive 3D learning.</li>
+<li><strong>Healthcare:</strong> Medical training simulations.</li>
+<li><strong>Real Estate:</strong> Virtual property tours.</li>
+<li><strong>Tourism:</strong> Virtual destination exploration.</li>
+<li><strong>Gaming:</strong> Browser-based immersive experiences.</li>
+</ul>
+
+<h3>Benefits</h3>
+
+<ul>
+<li>Interactive user experience.</li>
+<li>Better visualization of products.</li>
+<li>Immersive learning.</li>
+<li>Improved customer engagement.</li>
+</ul>
+
+<h3>Challenges</h3>
+
+<ul>
+<li>High processing requirements.</li>
+<li>Device compatibility.</li>
+<li>Development complexity.</li>
+<li>Network and performance requirements.</li>
+</ul>
+
+</section>
+
+<!-- SMART WEB -->
+
+<section id="smart">
+
+<h2>8. Smart Web</h2>
+
+<h3>Meaning of Smart Web</h3>
+
+<p>
+Smart Web refers to intelligent web systems that use technologies
+such as AI, machine learning, semantic technologies and connected
+devices to understand information and provide useful services.
+</p>
+
+<p>
+Instead of simply displaying information, a smart web application
+can analyze data, understand user requirements and respond
+intelligently.
+</p>
+
+<h3>Features of Smart Web</h3>
+
+<ul>
+<li>Intelligent search.</li>
+<li>Context-aware services.</li>
+<li>Personalized recommendations.</li>
+<li>Natural language interaction.</li>
+<li>Integration with smart devices.</li>
+<li>Automated decision support.</li>
+</ul>
+
+<h3>Example</h3>
+
+<p>
+Consider a smart travel website. A user searches for a holiday
+destination. The system can analyze the user's budget, preferences,
+weather conditions and travel history to recommend suitable
+destinations.
+</p>
+
+<div class="diagram">
+User Requirements
+       |
+       v
+Smart Web Application
+       |
+       v
+AI + Data Analysis
+       |
+       v
+Context Understanding
+       |
+       v
+Intelligent Recommendation
+</div>
+
+<h3>Smart Web vs Traditional Web</h3>
+
+<table>
+<tr>
+<th>Traditional Web</th>
+<th>Smart Web</th>
+</tr>
+
+<tr>
+<td>Mainly displays requested information.</td>
+<td>Analyzes information and provides intelligent responses.</td>
+</tr>
+
+<tr>
+<td>Limited personalization.</td>
+<td>Supports personalized services.</td>
+</tr>
+
+<tr>
+<td>More user-driven interaction.</td>
+<td>Can provide context-aware assistance.</td>
+</tr>
+
+<tr>
+<td>Basic information retrieval.</td>
+<td>Intelligent information processing.</td>
+</tr>
+</table>
+
+</section>
+
+<!-- ADAPTIVE INTERFACES -->
+
+<section id="adaptive">
+
+<h2>9. Adaptive Interfaces</h2>
+
+<h3>What is an Adaptive Interface?</h3>
+
+<p>
+An adaptive interface is a user interface that automatically
+adjusts its layout, content or behaviour according to the user's
+device, preferences, behaviour or environment.
+</p>
+
+<div class="example">
+<strong>Example:</strong>
+A website that changes its layout when opened on a mobile phone
+instead of a desktop computer.
+</div>
+
+<h3>Important Features</h3>
+
+<ul>
+<li>Adjusts according to screen size.</li>
+<li>Provides device-specific layouts.</li>
+<li>Can adjust content according to user preferences.</li>
+<li>Can support accessibility requirements.</li>
+<li>Improves usability and navigation.</li>
+</ul>
+
+<h3>Responsive vs Adaptive Design</h3>
+
+<table>
+<tr>
+<th>Responsive Design</th>
+<th>Adaptive Design</th>
+</tr>
+
+<tr>
+<td>Uses flexible layouts that adjust continuously.</td>
+<td>Uses predefined layouts for selected screen sizes or conditions.</td>
+</tr>
+
+<tr>
+<td>Often uses fluid grids and CSS media queries.</td>
+<td>May use separate layout rules for different device categories.</td>
+</tr>
+
+<tr>
+<td>One flexible layout responds to available space.</td>
+<td>Different layouts may be selected based on device or context.</td>
+</tr>
+</table>
+
+<h3>Example of Responsive CSS</h3>
+
+<div class="code">
+/* Desktop layout */
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+/* Mobile layout */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+}
+</div>
+
+<h3>Benefits</h3>
+
+<ul>
+<li>Improves user experience.</li>
+<li>Supports multiple devices.</li>
+<li>Improves accessibility.</li>
+<li>Reduces unnecessary navigation complexity.</li>
+<li>Can increase user engagement.</li>
+</ul>
+
+</section>
+
+<!-- WEB AUTOMATION -->
+
+<section id="automation">
+
+<h2>10. Web Automation</h2>
+
+<h3>What is Web Automation?</h3>
+
+<p>
+Web Automation is the use of software tools and scripts to perform
+repetitive tasks on websites automatically, with limited or no
+manual intervention.
+</p>
+
+<div class="example">
+<strong>Example:</strong>
+Automatically filling an online form, testing website login
+functionality or collecting information from a permitted webpage.
+</div>
+
+<h3>Types of Web Automation</h3>
+
+<ul>
+<li><strong>Browser Automation:</strong> Automatically interacts with web browsers.</li>
+<li><strong>Web Testing:</strong> Tests website functionality and performance.</li>
+<li><strong>Form Automation:</strong> Automatically fills and submits forms.</li>
+<li><strong>Data Automation:</strong> Collects and processes permitted web data.</li>
+<li><strong>Workflow Automation:</strong> Connects multiple web-based tasks.</li>
+</ul>
+
+<h3>Popular Tools</h3>
+
+<table>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>Selenium</td>
+<td>Automates browser actions and web testing.</td>
+</tr>
+
+<tr>
+<td>Playwright</td>
+<td>Automates browser testing and interactions.</td>
+</tr>
+
+<tr>
+<td>Puppeteer</td>
+<td>Controls Chrome or Chromium using JavaScript.</td>
+</tr>
+
+<tr>
+<td>Robotic Process Automation (RPA)</td>
+<td>Automates repetitive business processes.</td>
+</tr>
+
+<tr>
+<td>Python</td>
+<td>Can be used to develop automation scripts.</td>
+</tr>
+</table>
+
+<h3>Working of Web Automation</h3>
+
+<div class="diagram">
+Automation Script
+       |
+       v
+Browser Opens Website
+       |
+       v
+Script Performs Actions
+       |
+       v
+Website Processes Request
+       |
+       v
+Result is Collected
+       |
+       v
+Report / Output Generated
+</div>
+
+<h3>Example: Selenium with Python</h3>
+
+<div class="code">
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+
+driver.get("https://example.com")
+
+print(driver.title)
+
+driver.quit()
+</div>
+
+<h3>Applications</h3>
+
+<ul>
+<li>Automated website testing.</li>
+<li>Online form processing.</li>
+<li>Business workflow automation.</li>
+<li>Browser-based repetitive tasks.</li>
+<li>Quality assurance.</li>
+</ul>
+
+<h3>Advantages</h3>
+
+<ul>
+<li>Saves time.</li>
+<li>Reduces repetitive manual work.</li>
+<li>Improves testing consistency.</li>
+<li>Can process large numbers of routine tasks.</li>
+</ul>
+
+<h3>Limitations</h3>
+
+<ul>
+<li>Requires maintenance when websites change.</li>
+<li>Incorrect scripts can produce errors.</li>
+<li>Some websites restrict automated access.</li>
+<li>Security and authorization must be considered.</li>
+</ul>
+
+</section>
+
+<!-- 5G -->
+
+<section id="5g">
+
+<h2>11. Impact of 5G on Web Technologies</h2>
+
+<h3>What is 5G?</h3>
+
+<p>
+5G stands for Fifth Generation Mobile Network Technology.
+It is designed to provide higher data speeds, lower latency
+and greater network capacity compared with earlier mobile
+network generations.
+</p>
+
+<div class="box">
+<strong>Simple Definition:</strong>
+5G is a modern mobile communication technology that enables
+faster and more responsive internet connectivity.
+</div>
+
+<h3>Important Features of 5G</h3>
+
+<ul>
+<li><strong>High Data Speed:</strong> Supports faster data transfer.</li>
+<li><strong>Low Latency:</strong> Reduces communication delay.</li>
+<li><strong>High Capacity:</strong> Supports a large number of connected devices.</li>
+<li><strong>Network Reliability:</strong> Can support demanding applications with suitable network deployment.</li>
+<li><strong>Massive IoT Support:</strong> Helps connect large numbers of smart devices.</li>
+</ul>
+
+<h3>How 5G Affects Web Technologies</h3>
+
+<table>
+<tr>
+<th>Web Technology</th>
+<th>Impact of 5G</th>
+</tr>
+
+<tr>
+<td>Cloud Computing</td>
+<td>Faster communication with cloud services.</td>
+</tr>
+
+<tr>
+<td>IoT</td>
+<td>Supports communication among connected devices.</td>
+</tr>
+
+<tr>
+<td>AR / VR</td>
+<td>Can improve streaming and interactive experiences.</td>
+</tr>
+
+<tr>
+<td>Video Streaming</td>
+<td>Can support higher-quality streaming with suitable bandwidth.</td>
+</tr>
+
+<tr>
+<td>Online Gaming</td>
+<td>Lower network latency can improve responsiveness.</td>
+</tr>
+
+<tr>
+<td>Real-Time Applications</td>
+<td>Can improve communication speed and responsiveness.</td>
+</tr>
+</table>
+
+<h3>5G and Web Development</h3>
+
+<p>
+5G creates opportunities for web developers to build applications
+that depend on real-time communication, connected devices,
+high-quality media and cloud-based processing.
+</p>
+
+<h3>Applications</h3>
+
+<ul>
+<li>Smart city systems.</li>
+<li>Connected vehicles.</li>
+<li>Remote monitoring.</li>
+<li>Cloud gaming.</li>
+<li>Immersive AR and VR applications.</li>
+<li>Industrial IoT.</li>
+</ul>
+
+<h3>Advantages</h3>
+
+<ul>
+<li>Faster communication.</li>
+<li>Lower latency in suitable network conditions.</li>
+<li>Better support for connected devices.</li>
+<li>Improved real-time applications.</li>
+<li>New opportunities for immersive web experiences.</li>
+</ul>
+
+<h3>Challenges</h3>
+
+<ul>
+<li>Infrastructure deployment cost.</li>
+<li>Network coverage limitations.</li>
+<li>Device compatibility.</li>
+<li>Cybersecurity concerns.</li>
+<li>Unequal availability across locations.</li>
+</ul>
+
+</section>
+
+<!-- REVISION -->
+
+<section id="revision">
+
+<h2>12. Quick Revision Notes</h2>
+
+<table>
+<tr>
+<th>Topic</th>
+<th>Important Point</th>
+</tr>
+
+<tr>
+<td>Web 4.0</td>
+<td>Intelligent and connected web.</td>
+</tr>
+
+<tr>
+<td>AI-Powered Web</td>
+<td>Uses AI and ML for intelligent services.</td>
+</tr>
+
+<tr>
+<td>Personalized Content</td>
+<td>Content based on user preferences and behaviour.</td>
+</tr>
+
+<tr>
+<td>DWeb</td>
+<td>Distributed and decentralized internet services.</td>
+</tr>
+
+<tr>
+<td>Blockchain</td>
+<td>Distributed digital ledger.</td>
+</tr>
+
+<tr>
+<td>Smart Contract</td>
+<td>Program that executes predefined rules on a blockchain.</td>
+</tr>
+
+<tr>
+<td>IoT</td>
+<td>Network of internet-connected physical devices.</td>
+</tr>
+
+<tr>
+<td>AR</td>
+<td>Combines digital objects with the real world.</td>
+</tr>
+
+<tr>
+<td>VR</td>
+<td>Creates a simulated virtual environment.</td>
+</tr>
+
+<tr>
+<td>Smart Web</td>
+<td>Intelligent and context-aware web services.</td>
+</tr>
+
+<tr>
+<td>Adaptive Interface</td>
+<td>Adjusts interface according to device or user context.</td>
+</tr>
+
+<tr>
+<td>Web Automation</td>
+<td>Automates repetitive web-based tasks.</td>
+</tr>
+
+<tr>
+<td>5G</td>
+<td>Fifth-generation mobile network technology.</td>
+</tr>
+
+</table>
+
+<h3>Important Full Forms</h3>
+
+<table>
+<tr>
+<th>Term</th>
+<th>Full Form</th>
+</tr>
+
+<tr><td>AI</td><td>Artificial Intelligence</td></tr>
+<tr><td>ML</td><td>Machine Learning</td></tr>
+<tr><td>IoT</td><td>Internet of Things</td></tr>
+<tr><td>AR</td><td>Augmented Reality</td></tr>
+<tr><td>VR</td><td>Virtual Reality</td></tr>
+<tr><td>DWeb</td><td>Decentralized Web</td></tr>
+<tr><td>P2P</td><td>Peer-to-Peer</td></tr>
+<tr><td>NLP</td><td>Natural Language Processing</td></tr>
+<tr><td>RPA</td><td>Robotic Process Automation</td></tr>
+<tr><td>5G</td><td>Fifth Generation</td></tr>
+<tr><td>API</td><td>Application Programming Interface</td></tr>
+</table>
+
+</section>
+
+<!-- QUESTIONS -->
+
+<section id="questions">
+
+<h2>13. Important Examination Questions</h2>
+
+<h3>Level 1 – Remembering</h3>
+
+<div class="question">
+1. Define Web 4.0.
+</div>
+
+<div class="question">
+2. What is Artificial Intelligence?
+</div>
+
+<div class="question">
+3. Define Blockchain.
+</div>
+
+<div class="question">
+4. What is IoT?
+</div>
+
+<div class="question">
+5. Expand AR, VR and 5G.
+</div>
+
+<h3>Level 2 – Understanding</h3>
+
+<div class="question">
+1. Explain the main features of Web 4.0.
+</div>
+
+<div class="question">
+2. Explain personalized content with examples.
+</div>
+
+<div class="question">
+3. Differentiate between AR and VR.
+</div>
+
+<div class="question">
+4. Explain the concept of Decentralized Web.
+</div>
+
+<div class="question">
+5. What are adaptive interfaces?
+</div>
+
+<h3>Level 3 – Applying</h3>
+
+<div class="question">
+1. Explain how AI can be used in an e-commerce website.
+</div>
+
+<div class="question">
+2. Describe how IoT devices communicate with web applications.
+</div>
+
+<div class="question">
+3. Explain the use of web automation in software testing.
+</div>
+
+<div class="question">
+4. How can AR be used in online shopping?
+</div>
+
+<h3>Level 4 – Analyzing</h3>
+
+<div class="question">
+1. Differentiate between centralized and decentralized web.
+</div>
+
+<div class="question">
+2. Compare responsive and adaptive interfaces.
+</div>
+
+<div class="question">
+3. Analyze the advantages and limitations of blockchain integration.
+</div>
+
+<div class="question">
+4. Compare AR and VR technologies.
+</div>
+
+<h3>Level 5 – Evaluating</h3>
+
+<div class="question">
+1. Evaluate the impact of AI on the future of web development.
+</div>
+
+<div class="question">
+2. Discuss the security and privacy challenges of IoT.
+</div>
+
+<div class="question">
+3. Evaluate the role of 5G in improving web applications.
+</div>
+
+<h3>Level 6 – Creating</h3>
+
+<div class="question">
+1. Design a smart web application using AI and IoT.
+</div>
+
+<div class="question">
+2. Propose a blockchain-based web application.
+</div>
+
+<div class="question">
+3. Design an adaptive interface for desktop and mobile users.
+</div>
+
+<div class="question">
+4. Develop a conceptual architecture for an AR-based shopping website.
+</div>
+
+<h3>⭐ High-Priority Topics for Examination</h3>
+
+<div class="box">
+1. Web 4.0: Meaning and Features<br>
+2. AI-Powered Web and Personalized Content<br>
+3. Centralized vs Decentralized Web<br>
+4. Blockchain Integration and Smart Contracts<br>
+5. IoT Architecture and Applications<br>
+6. Difference between AR and VR<br>
+7. Smart Web and Adaptive Interfaces<br>
+8. Web Automation and Its Tools<br>
+9. Impact of 5G on Web Technologies
+</div>
+
+</section>
+
+</main>
+</div>
+
+<footer>
+    <h3>UNIT 5 – Web Technology</h3>
+    <p>Complete Study Notes | B.Tech CSE / Data Science</p>
+    <br>
+    <p>End of Unit 5</p>
+</footer>
+
+</body>
+</html>

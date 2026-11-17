@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Unit 3 | Web Technology Notes</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --ink: #202638;
+                --muted: #657087;
+                --paper: #f7f6f2;
+                --white: #fff;
+                --violet: #6846c7;
+                --purple: #8b6de0;
+                --lime: #c5e86c;
+                --dark: #211b36;
+                --line: #e9e5f1;
+                --soft: #f0ecfb;
+                --teal: #188b87
+            }
+
+            * {
+                box-sizing: border-box
+            }
+
+            html {
+                scroll-behavior: smooth;
+                scroll-padding-top: 90px
+            }
+
+            body {
+                margin: 0;
+                background: var(--paper);
+                color: var(--ink);
+                font-family: "DM Sans",sans-serif;
+                line-height: 1.72
+            }
+
+            header {
+                position: sticky;
+                top: 0;
+                z-index: 10;
+                background: var(--dark);
+                color: white;
+                padding: 16px 6%;
+                box-shadow: 0 5px 22px #211b3628
+            }
+
+            .nav {
+                max-width: 1180px;
+                margin: auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 20px
+            }
+
+            .brand {
+                font: 700 1rem "Space Grotesk";
+                letter-spacing: .5px
+            }
+
+            .brand span {
+                color: var(--lime)
+            }
+
+            .nav a {
+                color: #e9e2ff;
+                text-decoration: none;
+                font-size: .9rem
+            }
+
+            .links {
+                display: flex;
+                gap: 20px;
+                flex-wrap: wrap
+            }
+
+            .hero {
+                padding: 78px 6% 70px;
+                color: white;
+                background: radial-gradient(circle at 85% 20%,#9a80ec 0,transparent 25%),linear-gradient(115deg,#211b36,#5135a2 65%,#188b87)
+            }
+
+            .hero-in {
+                max-width: 1180px;
+                margin: auto
+            }
+
+            .eyebrow {
+                font-size: .76rem;
+                letter-spacing: 2.4px;
+                text-transform: uppercase;
+                color: var(--lime);
+                font-weight: 700
+            }
+
+            .hero h1 {
+                font: 700 clamp(2.4rem,5vw,4.4rem)/1.08 "Space Grotesk";
+                max-width: 850px;
+                margin: 14px 0
+            }
+
+            .hero p {
+                max-width: 760px;
+                color: #e9e4fa;
+                font-size: 1.07rem
+            }
+
+            .chips {
+                display: flex;
+                gap: 9px;
+                flex-wrap: wrap;
+                margin-top: 25px
+            }
+
+            .chip {
+                border: 1px solid #ffffff55;
+                background: #ffffff15;
+                padding: 7px 13px;
+                border-radius: 30px;
+                font-size: .83rem
+            }
+
+            .layout {
+                max-width: 1180px;
+                margin: 38px auto;
+                padding: 0 22px;
+                display: grid;
+                grid-template-columns: 245px minmax(0,1fr);
+                gap: 27px
+            }
+
+            .side {
+                position: sticky;
+                top: 95px;
+                align-self: start;
+                max-height: calc(100vh - 115px);
+                overflow: auto;
+                background: white;
+                border: 1px solid var(--line);
+                border-radius: 17px;
+                padding: 19px
+            }
+
+            .side h3 {
+                font: 700 1rem "Space Grotesk";
+                margin: 0 0 12px
+            }
+
+            .side a {
+                display: block;
+                text-decoration: none;
+                color: #5e6376;
+                padding: 7px 10px;
+                border-radius: 8px;
+                font-size: .88rem
+            }
+
+            .side a:hover {
+                background: var(--soft);
+                color: var(--violet)
+            }
+
+            main {
+                min-width: 0
+            }
+
+            .intro,.card,.revision {
+                background: white;
+                border: 1px solid var(--line);
+                border-radius: 18px;
+                padding: 27px;
+                margin-bottom: 22px;
+                box-shadow: 0 8px 24px #211b3608
+            }
+
+            .intro {
+                border-top: 5px solid var(--lime)
+            }
+
+            .tag {
+                display: inline-block;
+                background: #f0ecfb;
+                color: #6041b4;
+                border-radius: 20px;
+                padding: 4px 10px;
+                font-size: .73rem;
+                font-weight: 700;
+                letter-spacing: .4px;
+                margin-bottom: 9px
+            }
+
+            h2 {
+                font: 700 1.65rem "Space Grotesk";
+                color: #2b2348;
+                margin: 0 0 13px
+            }
+
+            h3 {
+                font: 700 1.12rem "Space Grotesk";
+                color: #3d3370;
+                margin: 22px 0 8px
+            }
+
+            p {
+                color: #505a70;
+                margin: 9px 0
+            }
+
+            ul,ol {
+                color: #505a70;
+                padding-left: 22px
+            }
+
+            li {
+                margin: 5px 0
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2,minmax(0,1fr));
+                gap: 13px
+            }
+
+            .mini {
+                background: #faf9fd;
+                border: 1px solid var(--line);
+                border-radius: 12px;
+                padding: 15px
+            }
+
+            .mini strong {
+                color: #5d43ae
+            }
+
+            .mini p {
+                margin-bottom: 0
+            }
+
+            .code {
+                background: #211b36;
+                color: #f0edff;
+                padding: 17px 19px;
+                border-radius: 12px;
+                overflow: auto;
+                white-space: pre-wrap;
+                font: .88rem/1.65 Consolas,monospace
+            }
+
+            .comment {
+                color: #a9c77a
+            }
+
+            .note {
+                background: #f2f9df;
+                border-left: 4px solid #a6ca42;
+                color: #45551f;
+                padding: 13px 16px;
+                border-radius: 8px;
+                margin: 16px 0
+            }
+
+            .warn {
+                background: #fff4ed;
+                border-left: 4px solid #e98a50;
+                color: #754322;
+                padding: 13px 16px;
+                border-radius: 8px;
+                margin: 16px 0
+            }
+
+            .table-wrap {
+                overflow-x: auto
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                margin: 14px 0;
+                font-size: .92rem
+            }
+
+            th,td {
+                border: 1px solid var(--line);
+                padding: 10px 12px;
+                text-align: left
+            }
+
+            th {
+                background: #f0ecfb;
+                color: #48328b
+            }
+
+            tr:nth-child(even) td {
+                background: #fcfbfe
+            }
+
+            .flow {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex-wrap: wrap;
+                margin: 16px 0
+            }
+
+            .flow span {
+                padding: 9px 13px;
+                background: #f0ecfb;
+                border: 1px solid #ded5f6;
+                border-radius: 9px;
+                color: #533b9e;
+                font-weight: 600;
+                font-size: .88rem
+            }
+
+            .flow b {
+                color: #188b87
+            }
+
+            .question {
+                background: #fbfaff;
+                border: 1px solid var(--line);
+                padding: 12px 15px;
+                border-radius: 10px;
+                margin: 9px 0;
+                color: #4e5870
+            }
+
+            .footer {
+                background: var(--dark);
+                color: #eee9ff;
+                text-align: center;
+                padding: 28px 15px;
+                margin-top: 55px
+            }
+
+            .footer small {
+                color: #b6acd7
+            }
+
+            @media(max-width: 850px) {
+                .layout {
+                    grid-template-columns:1fr
+                }
+
+                .side {
+                    position: relative;
+                    top: auto;
+                    max-height: none
+                }
+
+                .links {
+                    display: none
+                }
+            }
+
+            @media(max-width: 560px) {
+                .hero {
+                    padding:55px 22px
+                }
+
+                .intro,.card,.revision {
+                    padding: 20px
+                }
+
+                .grid {
+                    grid-template-columns: 1fr
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="nav">
+                <div class="brand">
+                    VIVEK <span>RANA</span> / WEB TECHNOLOGY
+                </div>
+                <nav class="links">
+                    <a href="index.html">Course Home</a>
+                    <a href="#services">Web Services</a>
+                    <a href="#ajax">AJAX</a>
+                    <a href="#corba">CORBA</a>
+                </nav>
+            </div>
+        </header>
+        <section class="hero">
+            <div class="hero-in">
+                <div class="eyebrow">Web Technology • Unit 03</div>
+                <h1>Connecting Applications Across the Web</h1>
+                <p>Understand how web services communicate, how SOAP, WSDL and UDDI work together, how AJAX makes web pages more responsive, and how CORBA supports distributed objects.</p>
+                <div class="chips">
+                    <span class="chip">Web Service Architecture</span>
+                    <span class="chip">SOAP • WSDL • UDDI</span>
+                    <span class="chip">AJAX Programming</span>
+                    <span class="chip">CORBA</span>
+                </div>
+            </div>
+        </section>
+        <div class="layout">
+            <aside class="side">
+                <h3>UNIT CONTENTS</h3>
+                <a href="#services">1. Introduction to Web Services</a>
+                <a href="#architecture">2. Web Service Architecture</a>
+                <a href="#soap">3. SOAP</a>
+                <a href="#wsdl">4. WSDL</a>
+                <a href="#uddi">5. UDDI</a>
+                <a href="#develop">6. Developing & Deploying</a>
+                <a href="#ajax">7. Introduction to AJAX</a>
+                <a href="#performance">8. AJAX & Performance</a>
+                <a href="#programming">9. Programming in AJAX</a>
+                <a href="#corba">10. CORBA</a>
+                <a href="#revision">Quick Revision</a>
+                <a href="#questions">Exam Questions</a>
+            </aside>
+            <main>
+                <section class="intro">
+                    <span class="tag">UNIT OVERVIEW</span>
+                    <h2>What is this unit about?</h2>
+                    <p>This unit studies communication between software applications over a network. Web services allow different systems to exchange data, even when they use different programming languages or platforms. AJAX improves the user experience by updating parts of a web page without a full reload. CORBA is a distributed-object technology that lets software components communicate across language and platform boundaries.</p>
+                    <div class="grid">
+                        <div class="mini">
+                            <strong>Web Services</strong>
+                            <p>Application-to-application communication over a network.</p>
+                        </div>
+                        <div class="mini">
+                            <strong>SOAP, WSDL, UDDI</strong>
+                            <p>Messaging, service description and service discovery.</p>
+                        </div>
+                        <div class="mini">
+                            <strong>AJAX</strong>
+                            <p>Asynchronous browser-server communication.</p>
+                        </div>
+                        <div class="mini">
+                            <strong>CORBA</strong>
+                            <p>Distributed objects communicating through ORB.</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="card" id="services">
+                    <span class="tag">01 • WEB SERVICES</span>
+                    <h2>Introduction to Web Services</h2>
+                    <p>A web service is a software component that allows one application to communicate with another application over a network using defined interfaces and message formats. It commonly uses web technologies and standard protocols.</p>
+                    <h3>Example</h3>
+                    <p>A travel website may request flight information from an airline's system. The travel website sends a request, the airline service processes it, and the result is returned to the website.</p>
+                    <h3>Characteristics</h3>
+                    <ul>
+                        <li>
+                            <b>Interoperability:</b> applications built using different languages or platforms can communicate.
+                        </li>
+                        <li>
+                            <b>Loose coupling:</b> the client and service depend on a defined interface rather than each other's internal implementation.
+                        </li>
+                        <li>
+                            <b>Reusability:</b> one service can be used by multiple applications.
+                        </li>
+                        <li>
+                            <b>Network accessible:</b> services are available through network endpoints.
+                        </li>
+                        <li>
+                            <b>Machine-to-machine communication:</b> data is exchanged using structured messages.
+                        </li>
+                    </ul>
+                    <h3>Common web service styles</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <tr>
+                                <th>SOAP-based</th>
+                                <th>REST-style</th>
+                            </tr>
+                            <tr>
+                                <td>Uses SOAP messages, often XML, and a formal service contract such as WSDL.</td>
+                                <td>Uses resource-oriented URLs and standard HTTP methods.</td>
+                            </tr>
+                            <tr>
+                                <td>Protocol with defined message structure and processing rules.</td>
+                                <td>Architectural style; commonly uses JSON, but can use other representations.</td>
+                            </tr>
+                            <tr>
+                                <td>Often used where formal contracts and enterprise messaging features are required.</td>
+                                <td>Common for web and mobile APIs.</td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+                <section class="card" id="architecture">
+                    <span class="tag">02 • ARCHITECTURE</span>
+                    <h2>Web Service Architecture</h2>
+                    <p>A traditional web-services architecture has three important roles: service provider, service requester (client), and service registry. The provider creates and publishes the service; the requester finds and uses it; the registry stores service descriptions for discovery.</p>
+                    <div class="flow">
+                        <span>Service Provider</span>
+                        <b>— publish —&gt;</b>
+                        <span>Service Registry</span>
+                    </div>
+                    <div class="flow">
+                        <span>Service Requester</span>
+                        <b>— find —&gt;</b>
+                        <span>Service Registry</span>
+                    </div>
+                    <div class="flow">
+                        <span>Service Requester</span>
+                        <b>— bind / invoke —&gt;</b>
+                        <span>Service Provider</span>
+                    </div>
+                    <h3>Three basic operations</h3>
+                    <ol>
+                        <li>
+                            <b>Publish:</b> provider publishes service information or its description.
+                        </li>
+                        <li>
+                            <b>Find:</b> requester searches for a suitable service.
+                        </li>
+                        <li>
+                            <b>Bind / Invoke:</b> requester uses the service endpoint and sends a request.
+                        </li>
+                    </ol>
+                    <div class="note">Remember the roles: Provider offers the service, Registry helps discover it, and Requester consumes it.</div>
+                </section>
+                <section class="card" id="soap">
+                    <span class="tag">03 • SOAP</span>
+                    <h2>SOAP – Simple Object Access Protocol</h2>
+                    <p>SOAP is a messaging protocol used for exchanging structured information between applications. SOAP messages are commonly represented in XML and are often transported over HTTP, although other underlying protocols can be used.</p>
+                    <h3>Structure of a SOAP message</h3>
+                    <ul>
+                        <li>
+                            <b>Envelope:</b> the root element that identifies the message as a SOAP message.
+                        </li>
+                        <li>
+                            <b>Header:</b> optional information such as authentication, routing or transaction details.
+                        </li>
+                        <li>
+                            <b>Body:</b> contains the main request or response data.
+                        </li>
+                        <li>
+                            <b>Fault:</b> carries error information when processing fails; it appears within the body.
+                        </li>
+                    </ul>
+                    <div class="code">&lt;soap:Envelope
+  xmlns:soap="http://www.w3.org/2003/05/soap-envelope" &gt;
+  &lt;soap:Header &gt;
+    &lt;!-- Optional metadata --&gt;
+  &lt;/soap:Header &gt;
+  &lt;soap:Body &gt;
+    &lt;GetStudent &gt;
+      &lt;studentId &gt;101 &lt;/studentId &gt;
+    &lt;/GetStudent &gt;
+  &lt;/soap:Body &gt;
+&lt;/soap:Envelope &gt;</div>
+                    <h3>Advantages</h3>
+                    <ul>
+                        <li>Standardized XML message structure.</li>
+                        <li>Can work across different platforms and programming languages.</li>
+                        <li>Supports extensible headers and formal contracts.</li>
+                        <li>Can be used with enterprise security and reliability standards.</li>
+                    </ul>
+                </section>
+                <section class="card" id="wsdl">
+                    <span class="tag">04 • WSDL</span>
+                    <h2>WSDL – Web Services Description Language</h2>
+                    <p>WSDL is an XML-based language used to describe a web service. It tells a client what operations the service provides, what messages are exchanged, which protocol or binding is used, and where the service endpoint is located.</p>
+                    <h3>Common WSDL 1.1 elements</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <tr>
+                                <th>Element</th>
+                                <th>Meaning</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <code>types</code>
+                                </td>
+                                <td>Defines data types used in messages, commonly using XML Schema.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <code>message</code>
+                                </td>
+                                <td>Describes the data exchanged.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <code>portType</code>
+                                </td>
+                                <td>Defines the abstract operations offered by the service.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <code>binding</code>
+                                </td>
+                                <td>Specifies protocol and message-format details for an interface.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <code>service</code>
+                                </td>
+                                <td>Groups endpoints through which the service is available.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <code>port</code>
+                                </td>
+                                <td>Associates a binding with a network address (endpoint).</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="note">Easy memory: WSDL is like an instruction manual or contract that explains how a client can use a web service.</div>
+                </section>
+                <section class="card" id="uddi">
+                    <span class="tag">05 • SERVICE DISCOVERY</span>
+                    <h2>UDDI – Universal Description, Discovery and Integration</h2>
+                    <p>UDDI is a specification for publishing and discovering information about web services. It defines a way to organize service-provider information and technical service descriptions in a registry.</p>
+                    <h3>Information commonly represented in UDDI</h3>
+                    <ul>
+                        <li>
+                            <b>White pages:</b> basic business or provider contact information.
+                        </li>
+                        <li>
+                            <b>Yellow pages:</b> business categories and classifications.
+                        </li>
+                        <li>
+                            <b>Green pages:</b> technical information about services and how to access them.
+                        </li>
+                    </ul>
+                    <h3>How UDDI fits with SOAP and WSDL</h3>
+                    <div class="flow">
+                        <span>Provider publishes service description</span>
+                        <b>→</b>
+                        <span>UDDI Registry</span>
+                    </div>
+                    <div class="flow">
+                        <span>Client discovers service</span>
+                        <b>→</b>
+                        <span>Reads WSDL</span>
+                        <b>→</b>
+                        <span>Invokes using SOAP</span>
+                    </div>
+                    <p>UDDI helps locate a service, WSDL describes how to use it, and SOAP carries the structured messages in a SOAP-based service interaction.</p>
+                </section>
+                <section class="card" id="develop">
+                    <span class="tag">06 • DEVELOPMENT & DEPLOYMENT</span>
+                    <h2>Developing and Deploying Web Services</h2>
+                    <p>Developing a web service means designing its operations, implementing the service logic, exposing an endpoint, and making it available for client applications. Deployment means installing and configuring it in a server or hosting environment so clients can access it.</p>
+                    <h3>Typical development steps</h3>
+                    <ol>
+                        <li>
+                            <b>Identify requirements:</b> decide what problem the service will solve.
+                        </li>
+                        <li>
+                            <b>Design the interface:</b> define operations, inputs, outputs and error responses.
+                        </li>
+                        <li>
+                            <b>Choose technology:</b> select a framework, language and communication style (for example, SOAP or REST).
+                        </li>
+                        <li>
+                            <b>Implement service logic:</b> write the code that performs the required work.
+                        </li>
+                        <li>
+                            <b>Describe the service:</b> for SOAP services, prepare or generate a WSDL contract.
+                        </li>
+                        <li>
+                            <b>Test:</b> test valid requests, invalid inputs, errors, security and performance.
+                        </li>
+                        <li>
+                            <b>Deploy:</b> publish the service to a web/application server or cloud platform.
+                        </li>
+                        <li>
+                            <b>Monitor and maintain:</b> check logs, availability, security and version changes.
+                        </li>
+                    </ol>
+                    <h3>Simple request-response example</h3>
+                    <div class="flow">
+                        <span>Client application</span>
+                        <b>→ Request →</b>
+                        <span>Web service endpoint</span>
+                        <b>→</b>
+                        <span>Business logic / database</span>
+                    </div>
+                    <div class="flow">
+                        <span>Client application</span>
+                        <b>← Response ←</b>
+                        <span>Web service endpoint</span>
+                    </div>
+                    <h3>Deployment considerations</h3>
+                    <ul>
+                        <li>Server configuration and endpoint URL.</li>
+                        <li>HTTPS and authentication where required.</li>
+                        <li>Access permissions and input validation.</li>
+                        <li>Database connectivity and configuration management.</li>
+                        <li>Logging, monitoring, backups and scalability.</li>
+                    </ul>
+                </section>
+                <section class="card" id="ajax">
+                    <span class="tag">07 • AJAX</span>
+                    <h2>AJAX – Asynchronous JavaScript and XML</h2>
+                    <p>AJAX is a web development technique that allows a browser to communicate with a server asynchronously and update part of a web page without reloading the entire page. Despite its name, AJAX can exchange JSON, text or other data formats; it is not limited to XML.</p>
+                    <h3>Technologies involved</h3>
+                    <ul>
+                        <li>HTML and CSS for page structure and presentation.</li>
+                        <li>JavaScript to send requests and process responses.</li>
+                        <li>DOM to update page elements.</li>
+                        <li>XMLHttpRequest or the Fetch API for network communication.</li>
+                        <li>A server-side application to process requests and return data.</li>
+                    </ul>
+                    <h3>How AJAX works</h3>
+                    <div class="flow">
+                        <span>User action</span>
+                        <b>→</b>
+                        <span>JavaScript request</span>
+                        <b>→</b>
+                        <span>Server processes</span>
+                        <b>→</b>
+                        <span>Response returned</span>
+                        <b>→</b>
+                        <span>DOM updated</span>
+                    </div>
+                    <p>Example: when a user types in a search box, the page can request matching suggestions from the server and show them without refreshing the whole page.</p>
+                </section>
+                <section class="card" id="performance">
+                    <span class="tag">08 • PERFORMANCE</span>
+                    <h2>Improving Web Page Performance Using AJAX</h2>
+                    <p>AJAX can improve perceived responsiveness because only the required data or section needs to be updated instead of reloading the complete page. It does not automatically make every website faster; implementation and server performance still matter.</p>
+                    <h3>Ways AJAX can help</h3>
+                    <ul>
+                        <li>
+                            <b>Partial page updates:</b> update only the relevant part of the page.
+                        </li>
+                        <li>
+                            <b>Asynchronous requests:</b> users can continue interacting while a request is in progress.
+                        </li>
+                        <li>
+                            <b>Smaller data transfer:</b> request only the data needed for the current action.
+                        </li>
+                        <li>
+                            <b>On-demand loading:</b> fetch content when it is needed rather than loading everything initially.
+                        </li>
+                        <li>
+                            <b>Reduced full-page rendering:</b> avoid rebuilding the entire page for small updates.
+                        </li>
+                    </ul>
+                    <h3>Good practices</h3>
+                    <ul>
+                        <li>Show a loading indicator for longer requests.</li>
+                        <li>Handle network errors and timeouts.</li>
+                        <li>Debounce frequent events such as typing in a search box.</li>
+                        <li>Cache suitable responses where appropriate.</li>
+                        <li>Keep responses small and avoid unnecessary requests.</li>
+                        <li>Use HTTPS and validate data on the server.</li>
+                    </ul>
+                    <div class="warn">AJAX does not remove the need for server-side validation or security. Never trust data just because it came from your own web page.</div>
+                </section>
+                <section class="card" id="programming">
+                    <span class="tag">09 • AJAX PROGRAMMING</span>
+                    <h2>Programming in AJAX</h2>
+                    <p>A typical AJAX program performs four tasks: create a request, send it to the server, receive the response, and update the web page.</p>
+                    <h3>Example using Fetch API</h3>
+                    <p>This modern example requests JSON data from an endpoint and displays a result.</p>
+                    <div class="code">&lt;p id="result" &gt;Click to load information.&lt;/p &gt;
+&lt;button id="loadBtn" &gt;Load Data &lt;/button &gt;
+
+&lt;script &gt;
+document.getElementById("loadBtn").addEventListener("click", async () =&gt; {
+  const output = document.getElementById("result");
+  output.textContent = "Loading...";
+
+  try {
+    const response = await fetch("/api/student/101");
+    if (!response.ok) {
+      throw new Error("Request failed: " + response.status);
+    }
+    const student = await response.json();
+    output.textContent = student.name + " - " + student.course;
+  } catch (error) {
+    output.textContent = "Unable to load data.";
+    console.error(error);
+  }
+});
+&lt;/script &gt;</div>
+                    <h3>Traditional XMLHttpRequest example</h3>
+                    <div class="code">const xhr = new XMLHttpRequest();
+xhr.open("GET", "/api/message", true);
+
+xhr.onload = function () {
+  if (xhr.status === 200) {
+    document.getElementById("result").textContent = xhr.responseText;
+  }
+};
+
+xhr.onerror = function () {
+  document.getElementById("result").textContent = "Network error";
+};
+
+xhr.send();</div>
+                    <h3>Important XMLHttpRequest methods and properties</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <tr>
+                                <th>Method / Property</th>
+                                <th>Purpose</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <code>open()</code>
+                                </td>
+                                <td>Initializes the request method, URL and async setting.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <code>send()</code>
+                                </td>
+                                <td>Sends the request.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <code>onload</code>
+                                </td>
+                                <td>Runs when the request completes successfully at the network level.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <code>onerror</code>
+                                </td>
+                                <td>Handles network-level errors.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <code>status</code>
+                                </td>
+                                <td>Provides the HTTP status code.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <code>responseText</code>
+                                </td>
+                                <td>Provides the response as text.</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <code>responseXML</code>
+                                </td>
+                                <td>Provides an XML document response when available and parsed.</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="note">Fetch is the modern, promise-based approach. XMLHttpRequest is still important to understand because it is commonly included in AJAX syllabi and older examples.</div>
+                </section>
+                <section class="card" id="corba">
+                    <span class="tag">10 • DISTRIBUTED SYSTEMS</span>
+                    <h2>CORBA – Common Object Request Broker Architecture</h2>
+                    <p>CORBA is a standard architecture developed by the Object Management Group (OMG). It allows software objects in different programs, languages or machines to communicate with one another through an Object Request Broker (ORB).</p>
+                    <h3>Main components</h3>
+                    <ul>
+                        <li>
+                            <b>Object Request Broker (ORB):</b> acts as a communication intermediary. It locates the target object and helps send requests and return results.
+                        </li>
+                        <li>
+                            <b>Client:</b> requests an operation on a remote object.
+                        </li>
+                        <li>
+                            <b>Object implementation / server:</b> contains the code that performs the requested operation.
+                        </li>
+                        <li>
+                            <b>IDL (Interface Definition Language):</b> defines the operations and data types offered by an object independently of a programming language.
+                        </li>
+                        <li>
+                            <b>Stub:</b> client-side proxy code that prepares and sends a request.
+                        </li>
+                        <li>
+                            <b>Skeleton / servant-side mapping:</b> server-side support that receives the request and dispatches it to the object implementation.
+                        </li>
+                    </ul>
+                    <h3>How CORBA works</h3>
+                    <div class="flow">
+                        <span>Client</span>
+                        <b>→</b>
+                        <span>Stub</span>
+                        <b>→</b>
+                        <span>ORB</span>
+                        <b>→</b>
+                        <span>Server object</span>
+                    </div>
+                    <div class="flow">
+                        <span>Client receives result</span>
+                        <b>←</b>
+                        <span>ORB returns response</span>
+                    </div>
+                    <h3>Advantages</h3>
+                    <ul>
+                        <li>Supports communication across programming languages and platforms.</li>
+                        <li>Provides location transparency through the ORB.</li>
+                        <li>Supports distributed object-oriented applications.</li>
+                        <li>Uses IDL to define language-independent interfaces.</li>
+                    </ul>
+                    <h3>CORBA and Web Services</h3>
+                    <div class="table-wrap">
+                        <table>
+                            <tr>
+                                <th>CORBA</th>
+                                <th>Web Services</th>
+                            </tr>
+                            <tr>
+                                <td>Distributed-object architecture.</td>
+                                <td>Application communication using web protocols and service interfaces.</td>
+                            </tr>
+                            <tr>
+                                <td>Uses ORB and IDL.</td>
+                                <td>May use SOAP/WSDL or REST-style APIs.</td>
+                            </tr>
+                            <tr>
+                                <td>Often uses object-oriented remote invocation.</td>
+                                <td>Often exchanges messages or resource representations.</td>
+                            </tr>
+                            <tr>
+                                <td>Designed for language/platform interoperability in distributed systems.</td>
+                                <td>Designed for interoperable network services, commonly over web infrastructure.</td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+                <section class="revision" id="revision">
+                    <span class="tag">FAST RECAP</span>
+                    <h2>Quick Revision</h2>
+                    <div class="table-wrap">
+                        <table>
+                            <tr>
+                                <th>Term</th>
+                                <th>Key point</th>
+                            </tr>
+                            <tr>
+                                <td>Web Service</td>
+                                <td>Allows applications to communicate over a network.</td>
+                            </tr>
+                            <tr>
+                                <td>Provider</td>
+                                <td>Creates and offers the service.</td>
+                            </tr>
+                            <tr>
+                                <td>Requester</td>
+                                <td>Finds and uses the service.</td>
+                            </tr>
+                            <tr>
+                                <td>Registry</td>
+                                <td>Stores service discovery information.</td>
+                            </tr>
+                            <tr>
+                                <td>SOAP</td>
+                                <td>XML-based messaging protocol.</td>
+                            </tr>
+                            <tr>
+                                <td>WSDL</td>
+                                <td>Describes service operations, messages, bindings and endpoints.</td>
+                            </tr>
+                            <tr>
+                                <td>UDDI</td>
+                                <td>Specification for publishing and discovering services.</td>
+                            </tr>
+                            <tr>
+                                <td>AJAX</td>
+                                <td>Asynchronous browser-server communication and partial page updates.</td>
+                            </tr>
+                            <tr>
+                                <td>Fetch API</td>
+                                <td>Modern JavaScript interface for network requests.</td>
+                            </tr>
+                            <tr>
+                                <td>CORBA</td>
+                                <td>Distributed-object architecture using an ORB.</td>
+                            </tr>
+                            <tr>
+                                <td>IDL</td>
+                                <td>Language-independent interface definition.</td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+                <section class="revision" id="questions">
+                    <span class="tag">EXAM PREPARATION</span>
+                    <h2>Important Questions</h2>
+                    <div class="question">
+                        <b>1.</b> Define web services. Explain their characteristics and applications.
+                    </div>
+                    <div class="question">
+                        <b>2.</b> Explain the architecture of web services with a diagram.
+                    </div>
+                    <div class="question">
+                        <b>3.</b> What is SOAP? Explain the structure of a SOAP message.
+                    </div>
+                    <div class="question">
+                        <b>4.</b> Explain WSDL and its important elements.
+                    </div>
+                    <div class="question">
+                        <b>5.</b> What is UDDI? Explain white pages, yellow pages and green pages.
+                    </div>
+                    <div class="question">
+                        <b>6.</b> Explain how SOAP, WSDL and UDDI work together.
+                    </div>
+                    <div class="question">
+                        <b>7.</b> Explain the steps involved in developing and deploying a web service.
+                    </div>
+                    <div class="question">
+                        <b>8.</b> Define AJAX. Explain its working with a diagram.
+                    </div>
+                    <div class="question">
+                        <b>9.</b> How does AJAX improve web page performance?
+                    </div>
+                    <div class="question">
+                        <b>10.</b> Explain AJAX programming using XMLHttpRequest or Fetch.
+                    </div>
+                    <div class="question">
+                        <b>11.</b> What is CORBA? Explain ORB, IDL, stub and skeleton.
+                    </div>
+                    <div class="question">
+                        <b>12.</b> Differentiate between CORBA and Web Services.
+                    </div>
+                </section>
+            </main>
+        </div>
+        <footer class="footer">
+            <b>WEB TECHNOLOGY • UNIT 03</b>
+            <br>
+            <small>Study notes and revision • Vivek Rana • Quantum University</small>
+            <br>
+            <small>
+                <a href="index.html" style="color:#c5e86c">← Back to Course Home</a>
+            </small>
+        </footer>
+    </body>
+</html>
